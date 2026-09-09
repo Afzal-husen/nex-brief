@@ -1,9 +1,9 @@
 ---
 phase: "04"
 slug: "brief-synthesis-critique-durable-checkpointing"
-status: draft
+status: validated
 nyquist_compliant: true
-wave_0_complete: false
+wave_0_complete: true
 created: "2026-09-09"
 ---
 
@@ -38,11 +38,11 @@ created: "2026-09-09"
 
 | Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| 04-01-01 | 01 | 1 | BRIEF-01 | — | N/A | unit | `backend/.venv/Scripts/python.exe -c "from backend.app.models.brief import ProjectBrief, BriefSection, CritiqueReport; print('Models loaded successfully')"` | ❌ W0 | ⬜ pending |
-| 04-01-02 | 01 | 1 | BRIEF-01 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_brief_synthesis.py` | ❌ W0 | ⬜ pending |
-| 04-01-03 | 01 | 1 | BRIEF-02 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_critique.py` | ❌ W0 | ⬜ pending |
-| 04-02-01 | 02 | 2 | DATA-04 | — | N/A | unit | `backend/.venv/Scripts/python.exe -c "from backend.app.graph.builder import build_extraction_graph; print('6-node graph compiled successfully')"` | ❌ W0 | ⬜ pending |
-| 04-02-02 | 02 | 2 | DATA-04 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_state_checkpointing.py` | ❌ W0 | ⬜ pending |
+| 04-01-01 | 01 | 1 | BRIEF-01 | — | N/A | unit | `backend/.venv/Scripts/python.exe -c "from backend.app.models.brief import ProjectBrief, BriefSection, CritiqueReport; print('Models loaded successfully')"` | ✅ | ✅ green |
+| 04-01-02 | 01 | 1 | BRIEF-01 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_brief_synthesis.py` | ✅ | ✅ green |
+| 04-01-03 | 01 | 1 | BRIEF-02 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_critique.py` | ✅ | ✅ green |
+| 04-02-01 | 02 | 2 | DATA-04 | — | N/A | unit | `backend/.venv/Scripts/python.exe -c "from backend.app.graph.builder import build_extraction_graph; print('6-node graph compiled successfully')"` | ✅ | ✅ green |
+| 04-02-02 | 02 | 2 | DATA-04 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_state_checkpointing.py` | ✅ | ✅ green |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -50,10 +50,10 @@ created: "2026-09-09"
 
 ## Wave 0 Requirements
 
-- [ ] `backend/tests/test_brief_models.py` — unit tests for BriefSection, ProjectBrief, CritiqueIssue, CritiqueReport, UserClarification
-- [ ] `backend/tests/test_brief_synthesis.py` — unit tests for 11-section synthesis node with unaddressed section handling and user clarifications
-- [ ] `backend/tests/test_critique.py` — unit tests for critique audit node flagging ungrounded claims and score calculation
-- [ ] `backend/tests/test_state_checkpointing.py` — integration test verifying SQLite checkpointer state recovery across simulated restarts
+- [x] `backend/tests/test_brief_models.py` — unit tests for BriefSection, ProjectBrief, CritiqueIssue, CritiqueReport, UserClarification
+- [x] `backend/tests/test_brief_synthesis.py` — unit tests for 11-section synthesis node with unaddressed section handling and user clarifications
+- [x] `backend/tests/test_critique.py` — unit tests for critique audit node flagging ungrounded claims and score calculation
+- [x] `backend/tests/test_state_checkpointing.py` — integration test verifying SQLite checkpointer state recovery across simulated restarts
 
 ---
 
