@@ -1,11 +1,11 @@
 from unittest.mock import MagicMock
 import pytest
-from backend.app.core.llm import (
+from app.core.llm import (
     set_mock_clarification_client,
     clear_mock_clarification_client,
 )
-from backend.app.graph.clarification import generate_clarifications_node
-from backend.app.models.extraction import (
+from app.graph.clarification import generate_clarifications_node
+from app.models.extraction import (
     Contradiction,
     FactCategory,
     QuoteSpan,

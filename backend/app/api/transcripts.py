@@ -2,14 +2,14 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import Session, select
-from backend.app.api.deps import get_db
-from backend.app.models.project import Project
-from backend.app.models.transcript import (
+from app.api.deps import get_db
+from app.models.project import Project
+from app.models.transcript import (
     Transcript,
     TranscriptCreate,
     TranscriptRead,
 )
-from backend.app.services.transcript import normalize_transcript_text
+from app.services.transcript import normalize_transcript_text
 
 router = APIRouter(tags=["transcripts"])
 

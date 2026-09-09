@@ -4,8 +4,8 @@ import pytest
 from sqlmodel import Session, SQLModel, create_engine
 from sqlmodel.pool import StaticPool
 
-from backend.app.api.deps import get_session
-from backend.app.core.llm import (
+from app.api.deps import get_session
+from app.core.llm import (
     set_mock_extraction_client,
     clear_mock_extraction_client,
     set_mock_synthesis_client,
@@ -13,22 +13,22 @@ from backend.app.core.llm import (
     set_mock_critique_client,
     clear_mock_critique_client,
 )
-from backend.app.main import app
-from backend.app.models.brief import (
+from app.main import app
+from app.models.brief import (
     RawBriefPayload,
     RawBriefSection,
     RawCritiquePayload,
     CritiqueIssue,
     SectionKeyEnum,
 )
-from backend.app.models.extraction import (
+from app.models.extraction import (
     FactCategory,
     RawExtractionPayload,
     RawFactCandidate,
     RawUnknownCandidate,
 )
-from backend.app.models.project import Project, ProjectStatus
-from backend.app.models.transcript import Transcript
+from app.models.project import Project, ProjectStatus
+from app.models.transcript import Transcript
 
 
 @pytest.fixture(name="db_session")

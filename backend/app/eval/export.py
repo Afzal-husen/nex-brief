@@ -5,8 +5,8 @@ from pathlib import Path
 from typing import Optional
 from sqlmodel import Session
 
-from backend.app.core.database import engine
-from backend.app.services.eval_service import get_evaluation_dataset
+from app.core.database import engine
+from app.services.eval_service import get_evaluation_dataset
 
 
 def run_export(

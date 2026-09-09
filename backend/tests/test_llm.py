@@ -1,12 +1,12 @@
 from unittest.mock import MagicMock
-from backend.app.core.llm import (
+from app.core.llm import (
     get_groq_llm,
     get_extraction_llm_with_fallback,
     get_structured_extraction_client,
     set_mock_extraction_client,
     clear_mock_extraction_client,
 )
-from backend.app.models.extraction import (
+from app.models.extraction import (
     RawExtractionPayload,
     RawFactCandidate,
     FactCategory,

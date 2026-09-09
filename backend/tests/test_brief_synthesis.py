@@ -1,15 +1,15 @@
 from unittest.mock import MagicMock
 import pytest
-from backend.app.core.llm import set_mock_synthesis_client, clear_mock_synthesis_client
-from backend.app.graph.nodes.synthesize_brief import synthesize_brief_node
-from backend.app.graph.state import ExtractionState
-from backend.app.models.brief import (
+from app.core.llm import set_mock_synthesis_client, clear_mock_synthesis_client
+from app.graph.nodes.synthesize_brief import synthesize_brief_node
+from app.graph.state import ExtractionState
+from app.models.brief import (
     RawBriefPayload,
     RawBriefSection,
     SectionKeyEnum,
     UserClarification,
 )
-from backend.app.models.extraction import (
+from app.models.extraction import (
     ConfirmedFact,
     FactCategory,
     QuoteSpan,

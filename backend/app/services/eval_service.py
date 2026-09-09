@@ -2,10 +2,10 @@ import json
 from typing import Any, Optional
 from sqlmodel import Session, select
 
-from backend.app.models.brief_record import ProjectBriefRecord
-from backend.app.models.correction import CorrectionLog
-from backend.app.models.transcript import Transcript
-from backend.app.services.extraction import get_checkpointer
+from app.models.brief_record import ProjectBriefRecord
+from app.models.correction import CorrectionLog
+from app.models.transcript import Transcript
+from app.services.extraction import get_checkpointer
 
 
 def get_correction_logs(

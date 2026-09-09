@@ -1,11 +1,11 @@
 from unittest.mock import MagicMock
 import pytest
-from backend.app.core.llm import (
+from app.core.llm import (
     set_mock_contradiction_client,
     clear_mock_contradiction_client,
 )
-from backend.app.graph.contradiction import detect_contradictions_node
-from backend.app.models.extraction import (
+from app.graph.contradiction import detect_contradictions_node
+from app.models.extraction import (
     ConfirmedFact,
     FactCategory,
     QuoteSpan,

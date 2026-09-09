@@ -1,15 +1,20 @@
 from contextlib import contextmanager
 from typing import Any, Generator
 from langgraph.checkpoint.sqlite import SqliteSaver
-from backend.app.core.config import settings
-from backend.app.graph import build_extraction_graph, ExtractionState
-from backend.app.models.extraction import ExtractionResult
-from backend.app.models.brief import UserClarification
-from backend.app.services.transcript import normalize_transcript_text
+from app.core.config import settings
+from app.graph import build_extraction_graph, ExtractionState
+from app.models.extraction import ExtractionResult
+from app.models.brief import UserClarification
+from app.services.transcript import normalize_transcript_text
+
+
+from app.core.database import db_file_path
 
 
 def _resolve_sqlite_path(db_url: str) -> str:
     """Extract filesystem path from a sqlite URL (e.g., sqlite:///path -> path)."""
+    if db_file_path is not None:
+        return str(db_file_path)
     if db_url.startswith("sqlite:///"):
         return db_url.replace("sqlite:///", "")
     return db_url

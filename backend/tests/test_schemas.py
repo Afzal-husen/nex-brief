@@ -1,5 +1,5 @@
 import uuid
-from backend.app.models.extraction import (
+from app.models.extraction import (
     FactCategory,
     QuoteSpan,
     ConfirmedFact,
@@ -128,7 +128,7 @@ def test_raw_extraction_payload_and_result():
 
 
 def test_contradiction_schema():
-    from backend.app.models.extraction import Contradiction, UnverifiedContradiction, RawContradictionCandidate
+    from app.models.extraction import Contradiction, UnverifiedContradiction, RawContradictionCandidate
 
     contradiction = Contradiction(
         category=FactCategory.TIMELINE,
@@ -165,7 +165,7 @@ def test_contradiction_schema():
 
 
 def test_clarification_question_schema():
-    from backend.app.models.extraction import ClarificationQuestion
+    from app.models.extraction import ClarificationQuestion
 
     question = ClarificationQuestion(
         priority=1,

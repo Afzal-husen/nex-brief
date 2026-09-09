@@ -1,7 +1,7 @@
 from typing import Any
-from backend.app.core.llm import get_structured_extraction_client
-from backend.app.graph.state import ExtractionState
-from backend.app.models.extraction import RawExtractionPayload
+from app.core.llm import get_structured_extraction_client
+from app.graph.state import ExtractionState
+from app.models.extraction import RawExtractionPayload
 
 EXTRACTION_SYSTEM_PROMPT = """You are NexBrief's Truth-Grounded Knowledge Extraction Engine.
 Your task is to analyze client discovery-call transcripts with epistemic rigor.

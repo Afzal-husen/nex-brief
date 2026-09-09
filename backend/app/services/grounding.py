@@ -1,6 +1,6 @@
 import re
 from typing import Any
-from backend.app.models.extraction import (
+from app.models.extraction import (
     ConfirmedFact,
     QuoteSpan,
     RawFactCandidate,

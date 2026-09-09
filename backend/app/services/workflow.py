@@ -4,27 +4,27 @@ from typing import Any
 from fastapi import HTTPException, status
 from sqlmodel import Session, select
 
-from backend.app.graph import build_extraction_graph, ExtractionState
-from backend.app.models.brief import (
+from app.graph import build_extraction_graph, ExtractionState
+from app.models.brief import (
     BriefSection,
     CritiqueReport,
     ProjectBrief,
     UserClarification,
 )
-from backend.app.models.brief_record import ProjectBriefRecord
-from backend.app.models.correction import CorrectionLog
-from backend.app.models.extraction import (
+from app.models.brief_record import ProjectBriefRecord
+from app.models.correction import CorrectionLog
+from app.models.extraction import (
     ClarificationQuestion,
     ConfirmedFact,
     Contradiction,
     InferredPoint,
     UnknownGap,
 )
-from backend.app.models.project import Project, ProjectStatus
-from backend.app.models.transcript import Transcript
-from backend.app.services.diff_engine import compute_section_diffs
-from backend.app.services.extraction import get_checkpointer
-from backend.app.services.transcript import normalize_transcript_text
+from app.models.project import Project, ProjectStatus
+from app.models.transcript import Transcript
+from app.services.diff_engine import compute_section_diffs
+from app.services.extraction import get_checkpointer
+from app.services.transcript import normalize_transcript_text
 
 
 def utc_now() -> str:

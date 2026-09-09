@@ -1,7 +1,7 @@
 from typing import Any
-from backend.app.core.llm import get_structured_synthesis_client
-from backend.app.graph.state import ExtractionState
-from backend.app.models.brief import (
+from app.core.llm import get_structured_synthesis_client
+from app.graph.state import ExtractionState
+from app.models.brief import (
     BriefSection,
     ProjectBrief,
     RawBriefPayload,

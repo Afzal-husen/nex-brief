@@ -1,9 +1,9 @@
 from unittest.mock import MagicMock
-from backend.app.models.extraction import (
+from app.models.extraction import (
     FactCategory,
     RawFactCandidate,
 )
-from backend.app.services.grounding import (
+from app.services.grounding import (
     calculate_line_numbers,
     find_quote_spans,
     verify_candidate_facts,

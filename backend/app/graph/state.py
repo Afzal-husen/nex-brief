@@ -1,5 +1,5 @@
 from typing import TypedDict
-from backend.app.models.extraction import (
+from app.models.extraction import (
     ConfirmedFact,
     InferredPoint,
     UnknownGap,
@@ -9,7 +9,7 @@ from backend.app.models.extraction import (
     UnverifiedContradiction,
     ClarificationQuestion,
 )
-from backend.app.models.brief import (
+from app.models.brief import (
     ProjectBrief,
     UserClarification,
     CritiqueReport,

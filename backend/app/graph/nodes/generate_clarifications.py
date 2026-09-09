@@ -1,9 +1,9 @@
 from typing import Any, Literal
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from backend.app.core.llm import get_structured_clarification_client
-from backend.app.graph.state import ExtractionState
-from backend.app.models.extraction import (
+from app.core.llm import get_structured_clarification_client
+from app.graph.state import ExtractionState
+from app.models.extraction import (
     ClarificationQuestion,
     Contradiction,
     RawClarificationPayload,

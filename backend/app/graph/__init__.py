@@ -1,6 +1,6 @@
-from backend.app.graph.state import ExtractionState
-from backend.app.graph.builder import build_extraction_graph
-from backend.app.graph.nodes import (
+from app.graph.state import ExtractionState
+from app.graph.builder import build_extraction_graph
+from app.graph.nodes import (
     extract_knowledge,
     verify_grounding,
     detect_contradictions_node,

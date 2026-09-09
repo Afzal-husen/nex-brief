@@ -3,20 +3,20 @@ from fastapi import APIRouter, Depends, status
 from pydantic import BaseModel, Field
 from sqlmodel import Session
 
-from backend.app.api.deps import get_session
-from backend.app.models.brief import (
+from app.api.deps import get_session
+from app.models.brief import (
     CritiqueReport,
     ProjectBrief,
     UserClarification,
 )
-from backend.app.models.extraction import (
+from app.models.extraction import (
     ClarificationQuestion,
     ConfirmedFact,
     Contradiction,
     InferredPoint,
     UnknownGap,
 )
-from backend.app.services.workflow import (
+from app.services.workflow import (
     approve_project_brief,
     get_project_brief_details,
     resume_project_with_clarifications,

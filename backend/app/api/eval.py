@@ -3,9 +3,9 @@ from typing import Optional
 from fastapi import APIRouter, Depends, Query, Response
 from sqlmodel import Session
 
-from backend.app.api.deps import get_session
-from backend.app.models.correction import CorrectionLog
-from backend.app.services.eval_service import (
+from app.api.deps import get_session
+from app.models.correction import CorrectionLog
+from app.services.eval_service import (
     get_correction_logs,
     get_evaluation_dataset,
 )

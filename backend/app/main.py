@@ -2,13 +2,13 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.api.health import router as health_router
-from backend.app.api.projects import router as projects_router
-from backend.app.api.transcripts import router as transcripts_router
-from backend.app.api.workflow import router as workflow_router
-from backend.app.api.eval import router as eval_router
-from backend.app.core.config import settings
-from backend.app.core.database import init_db
+from app.api.health import router as health_router
+from app.api.projects import router as projects_router
+from app.api.transcripts import router as transcripts_router
+from app.api.workflow import router as workflow_router
+from app.api.eval import router as eval_router
+from app.core.config import settings
+from app.core.database import init_db
 
 
 @asynccontextmanager

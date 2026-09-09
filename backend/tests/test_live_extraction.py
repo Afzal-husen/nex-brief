@@ -1,7 +1,7 @@
 import os
 import pytest
-from backend.app.core.config import settings
-from backend.app.services.extraction import run_extraction_pipeline
+from app.core.config import settings
+from app.services.extraction import run_extraction_pipeline
 
 GROQ_KEY = os.getenv("GROQ_API_KEY", "")
 

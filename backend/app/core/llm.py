@@ -1,12 +1,12 @@
 from typing import Any, Callable
 from langchain_groq import ChatGroq
-from backend.app.core.config import settings
-from backend.app.models.extraction import (
+from app.core.config import settings
+from app.models.extraction import (
     RawExtractionPayload,
     RawContradictionPayload,
     RawClarificationPayload,
 )
-from backend.app.models.brief import (
+from app.models.brief import (
     RawBriefPayload,
     RawCritiquePayload,
 )

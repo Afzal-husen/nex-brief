@@ -2,8 +2,8 @@
 import pytest
 from sqlalchemy.exc import IntegrityError
 from sqlmodel import Session, select
-from backend.app.models.project import Project, ProjectCreate
-from backend.app.models.transcript import Transcript, TranscriptCreate
+from app.models.project import Project, ProjectCreate
+from app.models.transcript import Transcript, TranscriptCreate
 
 
 def test_create_project(session: Session):

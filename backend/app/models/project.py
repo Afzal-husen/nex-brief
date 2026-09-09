@@ -4,9 +4,9 @@ from typing import Optional, List, TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship
 
 if TYPE_CHECKING:
-    from backend.app.models.transcript import Transcript
-    from backend.app.models.brief_record import ProjectBriefRecord
-    from backend.app.models.correction import CorrectionLog
+    from app.models.transcript import Transcript
+    from app.models.brief_record import ProjectBriefRecord
+    from app.models.correction import CorrectionLog
 
 
 def utc_now() -> str:

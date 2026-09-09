@@ -4,7 +4,7 @@ from typing import Optional, TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship
 
 if TYPE_CHECKING:
-    from backend.app.models.project import Project
+    from app.models.project import Project
 
 
 def utc_now() -> str:

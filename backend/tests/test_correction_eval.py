@@ -7,20 +7,20 @@ from fastapi.testclient import TestClient
 from sqlmodel import Session, SQLModel, create_engine, select
 from sqlmodel.pool import StaticPool
 
-from backend.app.api.deps import get_session
-from backend.app.main import app
-from backend.app.models.brief import SECTION_TITLES, SectionKeyEnum
-from backend.app.models.brief_record import ProjectBriefRecord
-from backend.app.models.correction import CorrectionLog
-from backend.app.models.project import Project, ProjectStatus
-from backend.app.models.transcript import Transcript
-from backend.app.services.diff_engine import compute_section_diffs
-from backend.app.services.eval_service import (
+from app.api.deps import get_session
+from app.main import app
+from app.models.brief import SECTION_TITLES, SectionKeyEnum
+from app.models.brief_record import ProjectBriefRecord
+from app.models.correction import CorrectionLog
+from app.models.project import Project, ProjectStatus
+from app.models.transcript import Transcript
+from app.services.diff_engine import compute_section_diffs
+from app.services.eval_service import (
     get_correction_logs,
     get_evaluation_dataset,
 )
-from backend.app.services.workflow import approve_project_brief
-from backend.app.eval.export import run_export
+from app.services.workflow import approve_project_brief
+from app.eval.export import run_export
 
 
 @pytest.fixture(name="db_session")

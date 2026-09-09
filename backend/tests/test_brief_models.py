@@ -1,5 +1,5 @@
 import pytest
-from backend.app.models.brief import (
+from app.models.brief import (
     SectionKeyEnum,
     SECTION_TITLES,
     BriefSection,

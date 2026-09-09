@@ -32,8 +32,8 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
 def session_fixture() -> Generator[Session, None, None]:
     """Provide a clean isolated in-memory database session for each test."""
     # Ensure all models are registered
-    from backend.app.models.project import Project  # noqa: F401
-    from backend.app.models.transcript import Transcript  # noqa: F401
+    from app.models.project import Project  # noqa: F401
+    from app.models.transcript import Transcript  # noqa: F401
 
     SQLModel.metadata.create_all(test_engine)
     with Session(test_engine) as session:
@@ -44,8 +44,8 @@ def session_fixture() -> Generator[Session, None, None]:
 @pytest.fixture(name="client")
 def client_fixture(session: Session) -> Generator[TestClient, None, None]:
     """Provide a TestClient with the database session dependency overridden."""
-    from backend.app.api.deps import get_db
-    from backend.app.main import app
+    from app.api.deps import get_db
+    from app.main import app
 
     def get_session_override():
         yield session

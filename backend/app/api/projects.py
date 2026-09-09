@@ -1,9 +1,9 @@
 """Projects API router."""
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlmodel import Session, select
-from backend.app.api.deps import get_db
-from backend.app.models.project import (
+from sqlmodel import Session, select, col
+from app.api.deps import get_db
+from app.models.project import (
     Project,
     ProjectCreate,
     ProjectRead,
@@ -34,7 +34,7 @@ def list_projects(
     db: Session = Depends(get_db),
 ):
     """List all projects ordered by newest first."""
-    statement = select(Project).order_by(Project.created_at.desc()).offset(offset).limit(limit)
+    statement = select(Project).order_by(col(Project.created_at).desc()).offset(offset).limit(limit)
     projects = db.exec(statement).all()
     return projects
 

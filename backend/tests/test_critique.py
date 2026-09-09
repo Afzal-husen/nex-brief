@@ -1,16 +1,16 @@
 from unittest.mock import MagicMock
 import pytest
-from backend.app.core.llm import set_mock_critique_client, clear_mock_critique_client
-from backend.app.graph.nodes.critique_brief import critique_brief_node
-from backend.app.graph.state import ExtractionState
-from backend.app.models.brief import (
+from app.core.llm import set_mock_critique_client, clear_mock_critique_client
+from app.graph.nodes.critique_brief import critique_brief_node
+from app.graph.state import ExtractionState
+from app.models.brief import (
     BriefSection,
     CritiqueIssue,
     ProjectBrief,
     RawCritiquePayload,
     SectionKeyEnum,
 )
-from backend.app.models.extraction import (
+from app.models.extraction import (
     ConfirmedFact,
     FactCategory,
     QuoteSpan,

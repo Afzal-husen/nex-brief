@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 import pytest
 from langgraph.checkpoint.sqlite import SqliteSaver
 
-from backend.app.core.llm import (
+from app.core.llm import (
     set_mock_extraction_client,
     clear_mock_extraction_client,
     set_mock_synthesis_client,
@@ -11,9 +11,9 @@ from backend.app.core.llm import (
     set_mock_critique_client,
     clear_mock_critique_client,
 )
-from backend.app.graph.builder import build_extraction_graph
-from backend.app.graph.state import ExtractionState
-from backend.app.models.brief import (
+from app.graph.builder import build_extraction_graph
+from app.graph.state import ExtractionState
+from app.models.brief import (
     RawBriefPayload,
     RawBriefSection,
     RawCritiquePayload,
@@ -21,13 +21,13 @@ from backend.app.models.brief import (
     SectionKeyEnum,
     UserClarification,
 )
-from backend.app.models.extraction import (
+from app.models.extraction import (
     FactCategory,
     RawExtractionPayload,
     RawFactCandidate,
     RawUnknownCandidate,
 )
-from backend.app.services.extraction import run_extraction_pipeline
+from app.services.extraction import run_extraction_pipeline
 
 
 @pytest.fixture(autouse=True)

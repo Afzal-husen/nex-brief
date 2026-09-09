@@ -1,15 +1,15 @@
 from typing import Any
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from backend.app.core.llm import get_structured_contradiction_client
-from backend.app.graph.state import ExtractionState
-from backend.app.models.extraction import (
+from app.core.llm import get_structured_contradiction_client
+from app.graph.state import ExtractionState
+from app.models.extraction import (
     Contradiction,
     RawContradictionCandidate,
     RawContradictionPayload,
     UnverifiedContradiction,
 )
-from backend.app.services.grounding import find_quote_spans
+from app.services.grounding import find_quote_spans
 
 CONTRADICTION_DETECTION_SYSTEM_PROMPT = """You are an expert project discovery analyst and epistemic auditor for NexBrief.
 Your task is to review the client discovery call transcript and previously verified client facts to identify any INTERNAL CONTRADICTIONS, mutually exclusive requirements, or conflicting statements.

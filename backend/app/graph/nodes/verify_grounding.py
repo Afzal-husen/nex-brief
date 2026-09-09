@@ -1,14 +1,14 @@
 from typing import Any
-from backend.app.core.llm import get_groq_llm
-from backend.app.graph.state import ExtractionState
-from backend.app.models.extraction import (
+from app.core.llm import get_groq_llm
+from app.graph.state import ExtractionState
+from app.models.extraction import (
     ConfirmedFact,
     FactCategory,
     InferredPoint,
     RawExtractionPayload,
     UnknownGap,
 )
-from backend.app.services.grounding import verify_candidate_facts
+from app.services.grounding import verify_candidate_facts
 
 
 def verify_grounding(state: ExtractionState) -> dict[str, Any]:

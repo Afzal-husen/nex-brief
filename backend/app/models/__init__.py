@@ -1,4 +1,4 @@
-from backend.app.models.project import (
+from app.models.project import (
     Project,
     ProjectBase,
     ProjectCreate,
@@ -6,13 +6,13 @@ from backend.app.models.project import (
     ProjectUpdate,
     ProjectStatus,
 )
-from backend.app.models.transcript import (
+from app.models.transcript import (
     Transcript,
     TranscriptBase,
     TranscriptCreate,
     TranscriptRead,
 )
-from backend.app.models.extraction import (
+from app.models.extraction import (
     FactCategory,
     QuoteSpan,
     ConfirmedFact,
@@ -32,7 +32,7 @@ from backend.app.models.extraction import (
     RawQuestionCandidate,
     RawClarificationPayload,
 )
-from backend.app.models.brief import (
+from app.models.brief import (
     SectionKeyEnum,
     SECTION_TITLES,
     BriefSection,
@@ -45,8 +45,8 @@ from backend.app.models.brief import (
     RawBriefPayload,
     RawCritiquePayload,
 )
-from backend.app.models.brief_record import ProjectBriefRecord
-from backend.app.models.correction import CorrectionLog
+from app.models.brief_record import ProjectBriefRecord
+from app.models.correction import CorrectionLog
 
 __all__ = [
     "Project",

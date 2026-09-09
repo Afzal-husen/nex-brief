@@ -3,10 +3,11 @@ from pathlib import Path
 from typing import Generator
 from sqlalchemy import event
 from sqlmodel import Session, SQLModel, create_engine
-from backend.app.core.config import settings
+from app.core.config import settings
 
 # Parse file path from SQLite URL if local file
 db_url = settings.DATABASE_URL
+db_file_path: Path | None = None
 if db_url.startswith("sqlite:///"):
     db_relative_path = db_url.replace("sqlite:///", "")
     # Check if absolute or relative
@@ -38,11 +39,22 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
 
 def init_db() -> None:
     """Initialize database tables registered with SQLModel."""
-    from backend.app.models.project import Project  # noqa: F401
-    from backend.app.models.transcript import Transcript  # noqa: F401
-    from backend.app.models.brief_record import ProjectBriefRecord  # noqa: F401
+    from app.models.project import Project  # noqa: F401
+    from app.models.transcript import Transcript  # noqa: F401
+    from app.models.brief_record import ProjectBriefRecord  # noqa: F401
+    from app.models.correction import CorrectionLog  # noqa: F401
 
     SQLModel.metadata.create_all(engine)
+
+    # Lightweight auto-migration for existing SQLite databases
+    with engine.begin() as conn:
+        cursor = conn.connection.cursor()
+        cursor.execute("PRAGMA table_info(projects)")
+        cols = [row[1] for row in cursor.fetchall()]
+        if "status" not in cols and "name" in cols:
+            cursor.execute("ALTER TABLE projects ADD COLUMN status VARCHAR DEFAULT 'created'")
+            cursor.execute("CREATE INDEX IF NOT EXISTS ix_projects_status ON projects (status)")
+            conn.connection.commit()
 
 
 def get_session() -> Generator[Session, None, None]:

@@ -1,6 +1,6 @@
 """Tests for database engine initialization and connection pragmas."""
 from sqlmodel import text
-from backend.app.core.database import engine, init_db
+from app.core.database import engine, init_db
 
 
 def test_sqlite_pragmas():

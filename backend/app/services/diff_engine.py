@@ -1,6 +1,6 @@
 import difflib
 from typing import Any, Optional
-from backend.app.models.brief import SECTION_TITLES, SectionKeyEnum
+from app.models.brief import SECTION_TITLES, SectionKeyEnum
 
 
 def compute_unified_diff(draft: str, approved: str, section_key: str) -> Optional[str]:

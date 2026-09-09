@@ -1,8 +1,8 @@
 from unittest.mock import MagicMock
 from langgraph.checkpoint.memory import MemorySaver
-from backend.app.core.llm import set_mock_extraction_client, clear_mock_extraction_client
-from backend.app.graph.extraction import build_extraction_graph, ExtractionState
-from backend.app.models.extraction import (
+from app.core.llm import set_mock_extraction_client, clear_mock_extraction_client
+from app.graph.extraction import build_extraction_graph, ExtractionState
+from app.models.extraction import (
     FactCategory,
     RawExtractionPayload,
     RawFactCandidate,
@@ -10,7 +10,7 @@ from backend.app.models.extraction import (
     RawUnknownCandidate,
     ExtractionResult,
 )
-from backend.app.services.extraction import run_extraction_pipeline
+from app.services.extraction import run_extraction_pipeline
 
 SAMPLE_TRANSCRIPT = (
     "Client: We want a project brief generator.\n"
@@ -180,11 +180,11 @@ def test_run_extraction_pipeline_service():
 
 
 def test_pipeline_detects_contradictions_and_prioritizes_questions():
-    from backend.app.core.llm import (
+    from app.core.llm import (
         set_mock_contradiction_client,
         clear_mock_contradiction_client,
     )
-    from backend.app.models.extraction import (
+    from app.models.extraction import (
         RawContradictionCandidate,
         RawContradictionPayload,
     )
