@@ -31,7 +31,7 @@ def detect_contradictions_node(state: dict[str, Any]) -> dict[str, Any]:
     verifying verbatim quote substrings for both sides of the conflict.
     """
     normalized_text = state.get("normalized_text") or state.get("transcript_text", "")
-    facts = state.get("facts", [])
+    facts = state.get("confirmed_facts") or state.get("facts", [])
 
     if not normalized_text.strip():
         return {
@@ -51,11 +51,17 @@ def detect_contradictions_node(state: dict[str, Any]) -> dict[str, Any]:
         "Identify any direct contradictions or statement tensions in the transcript above."
     )
 
-    client = get_structured_contradiction_client()
-    result: RawContradictionPayload = client.invoke([
-        SystemMessage(content=CONTRADICTION_DETECTION_SYSTEM_PROMPT),
-        HumanMessage(content=prompt),
-    ])
+    try:
+        client = get_structured_contradiction_client()
+        result: RawContradictionPayload = client.invoke([
+            SystemMessage(content=CONTRADICTION_DETECTION_SYSTEM_PROMPT),
+            HumanMessage(content=prompt),
+        ])
+    except Exception:
+        return {
+            "contradictions": [],
+            "unverified_contradictions": [],
+        }
 
     verified_contradictions: list[Contradiction] = []
     unverified_contradictions: list[UnverifiedContradiction] = []
