@@ -19,10 +19,10 @@
 
 ### Knowledge Extraction & Grounding
 
-- [ ] **EXTRACT-01**: System extracts confirmed facts and links each to a verbatim `source_quote`.
-- [ ] **EXTRACT-02**: System programmatically validates that every `source_quote` exists as an exact substring in `transcript_text`.
-- [ ] **EXTRACT-03**: System identifies inferred deductions and marks them explicitly with epistemic status `inferred`.
-- [ ] **EXTRACT-04**: System identifies missing critical information gaps (`unknowns`) needed to scope the project.
+- [x] **EXTRACT-01**: System extracts confirmed facts and links each to a verbatim `source_quote`.
+- [x] **EXTRACT-02**: System programmatically validates that every `source_quote` exists as an exact substring in `transcript_text`.
+- [x] **EXTRACT-03**: System identifies inferred deductions and marks them explicitly with epistemic status `inferred`.
+- [x] **EXTRACT-04**: System identifies missing critical information gaps (`unknowns`) needed to scope the project.
 - [ ] **EXTRACT-05**: System detects internal contradictions or mutually exclusive statements made in the transcript.
 
 ### Clarification & Human Interrupt Gate

@@ -64,8 +64,8 @@ Plans:
 
 Plans:
 
-- [ ] 02-01: Define domain Pydantic schemas and Groq structured output extraction client.
-- [ ] 02-02: Implement extraction node with verbatim quote substring verification and unit tests.
+- [x] 02-01: Define domain Pydantic schemas and Groq structured output extraction client.
+- [x] 02-02: Implement extraction node with verbatim quote substring verification and unit tests.
 
 ### Phase 3: Contradiction Detection & Follow-up Questions
 
@@ -217,7 +217,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Backend Foundation & Persistence | 2/2 | Complete | 2026-09-09 |
-| 2. Extraction & Grounding Engine | 0/2 | Not started | - |
+| 2. Extraction & Grounding Engine | 2/2 | Complete | 2026-09-09 |
 | 3. Contradiction Detection & Follow-up Questions | 0/2 | Not started | - |
 | 4. Brief Synthesis, Critique & Durable Checkpointing | 0/2 | Not started | - |
 | 5. Workflow REST API & Human-in-the-Loop Endpoints | 0/2 | Not started | - |
