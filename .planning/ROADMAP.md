@@ -18,7 +18,7 @@ NexBrief transforms client discovery call transcripts into clear, structured, an
 - [ ] **Phase 5: Workflow REST API & Human-in-the-Loop Endpoints** - FastAPI endpoints to trigger analysis, pause at human gates, submit clarifications, and approve briefs.
 - [ ] **Phase 6: Correction Logging & Evaluation Datasets (Story 14)** - Structured diff tracking between draft and approved briefs with JSONL evaluation dataset export.
 - [ ] **Phase 7: Frontend API Client & Project Dashboard** - Next.js typed API client, project management dashboard, and navigation skeleton.
-- [ ] **Phase 8: Transcript Ingestion & Fact Grounding UI** - Transcript paste/upload interface, epistemic breakdown cards, and click-to-highlight quote verification.
+- [x] **Phase 8: Transcript Ingestion & Fact Grounding UI** - Transcript paste/upload interface, epistemic breakdown cards, and click-to-highlight quote verification.
 - [ ] **Phase 9: Interactive Gap Clarification UI** - Review interface for resolving contradictions, answering unknowns, and inspecting follow-up questions.
 - [ ] **Phase 10: Brief Markdown Editor & Final Approval UI** - 11-section brief viewer with critique warnings, rich/Markdown editor, and approval sign-off.
 
@@ -171,8 +171,8 @@ Plans:
 
 Plans:
 
-- [ ] 08-01: Implement transcript paste/upload and viewing component.
-- [ ] 08-02: Implement fact/inference cards with interactive quote highlighting.
+- [x] 08-01: Implement transcript paste/upload and viewing component.
+- [x] 08-02: Implement fact/inference cards with interactive quote highlighting.
 
 ### Phase 9: Interactive Gap Clarification UI
 
@@ -223,6 +223,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 5. Workflow REST API & Human-in-the-Loop Endpoints | 2/2 | Complete | 2026-09-09 |
 | 6. Correction Logging & Evaluation Datasets | 1/1 | Complete | 2026-09-09 |
 | 7. Frontend API Client & Project Dashboard | 2/2 | Complete | 2026-09-09 |
-| 8. Transcript Ingestion & Fact Grounding UI | 0/2 | Not started | - |
+| 8. Transcript Ingestion & Fact Grounding UI | 2/2 | Complete | 2026-09-09 |
 | 9. Interactive Gap Clarification UI | 0/1 | Not started | - |
 | 10. Brief Markdown Editor & Final Approval UI | 0/2 | Not started | - |
