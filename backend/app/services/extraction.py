@@ -4,6 +4,7 @@ from langgraph.checkpoint.sqlite import SqliteSaver
 from backend.app.core.config import settings
 from backend.app.graph import build_extraction_graph, ExtractionState
 from backend.app.models.extraction import ExtractionResult
+from backend.app.models.brief import UserClarification
 from backend.app.services.transcript import normalize_transcript_text
 
 
@@ -29,13 +30,15 @@ def run_extraction_pipeline(
     transcript_id: str,
     transcript_text: str,
     project_id: str = "",
+    user_clarifications: list[UserClarification] | None = None,
     checkpointer: Any = None,
 ) -> ExtractionResult:
     """
-    Executes the two-node extraction and truth-grounding LangGraph pipeline (D-26).
-    Normalizes transcript text, configures state, and persists checkpointer thread_id = transcript_id.
+    Executes the 6-node extraction, truth-grounding, and brief synthesis LangGraph pipeline (D-15).
+    Normalizes transcript text, configures state, and persists checkpointer thread_id.
     """
     normalized_text = normalize_transcript_text(transcript_text)
+    thread_id = f"project:{project_id}:transcript:{transcript_id}" if project_id else transcript_id
 
     initial_state: ExtractionState = {
         "transcript_id": transcript_id,
@@ -49,13 +52,16 @@ def run_extraction_pipeline(
         "contradictions": [],
         "unverified_contradictions": [],
         "clarification_questions": [],
+        "user_clarifications": user_clarifications or [],
+        "draft_brief": None,
+        "critique_report": None,
         "retry_count": 0,
         "errors": [],
     }
 
     config = {
         "configurable": {
-            "thread_id": transcript_id,
+            "thread_id": thread_id,
         }
     }
 
@@ -71,4 +77,7 @@ def run_extraction_pipeline(
         contradictions=final_state.get("contradictions", []),
         unverified_contradictions=final_state.get("unverified_contradictions", []),
         clarification_questions=final_state.get("clarification_questions", []),
+        user_clarifications=final_state.get("user_clarifications", []),
+        draft_brief=final_state.get("draft_brief"),
+        critique_report=final_state.get("critique_report"),
     )

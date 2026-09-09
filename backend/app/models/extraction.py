@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Literal
+from typing import Any, Literal
 import uuid
 from pydantic import BaseModel, Field
 
@@ -149,3 +149,6 @@ class ExtractionResult(BaseModel):
     contradictions: list[Contradiction] = Field(default_factory=list)
     unverified_contradictions: list[UnverifiedContradiction] = Field(default_factory=list)
     clarification_questions: list[ClarificationQuestion] = Field(default_factory=list)
+    user_clarifications: list[Any] = Field(default_factory=list)
+    draft_brief: Any = None
+    critique_report: Any = None
