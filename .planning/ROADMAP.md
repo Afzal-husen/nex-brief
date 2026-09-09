@@ -100,8 +100,8 @@ Plans:
 
 Plans:
 
-- [ ] 04-01: Implement 11-section brief synthesis node and critique audit node.
-- [ ] 04-02: Integrate SQLite persistent checkpointer and state recovery tests.
+- [x] 04-01: Implement 11-section brief synthesis node and critique audit node.
+- [x] 04-02: Integrate SQLite persistent checkpointer and state recovery tests.
 
 ### Phase 5: Workflow REST API & Human-in-the-Loop Endpoints
 

@@ -10,7 +10,7 @@
 - [ ] **DATA-01**: System initializes SQLite database via SQLModel with connection pooling and WAL mode.
 - [ ] **DATA-02**: User can manage projects (create, read, list, delete) stored in `project` table.
 - [ ] **DATA-03**: User can store raw transcripts in `transcript` table linked to project.
-- [ ] **DATA-04**: System persists LangGraph checkpoint state in durable SQLite storage across restarts.
+- [x] **DATA-04**: System persists LangGraph checkpoint state in durable SQLite storage across restarts.
 
 ### Ingestion & API Layer
 
@@ -33,8 +33,8 @@
 
 ### Brief Synthesis & Critique
 
-- [ ] **BRIEF-01**: System synthesizes an 11-section project brief grounded in confirmed facts and user clarifications.
-- [ ] **BRIEF-02**: System runs an automated self-critique node flagging ungrounded claims or hallucinated scope.
+- [x] **BRIEF-01**: System synthesizes an 11-section project brief grounded in confirmed facts and user clarifications.
+- [x] **BRIEF-02**: System runs an automated self-critique node flagging ungrounded claims or hallucinated scope.
 - [ ] **BRIEF-03**: User can inspect the draft brief and critique notes via REST API (`GET /projects/{id}/brief`).
 - [ ] **BRIEF-04**: User can edit brief sections and submit final approval (`POST /projects/{id}/approve`).
 
