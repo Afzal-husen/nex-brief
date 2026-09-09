@@ -2,7 +2,7 @@
 
 import useSWR, { type KeyedMutator } from 'swr';
 import { apiClient, type ApiError } from './client';
-import type { AnalyzeResponse, Project, Transcript } from './types';
+import type { AnalyzeResponse, BriefResponse, Project, Transcript } from './types';
 
 export interface UseProjectsResult {
   projects: Project[] | undefined;
@@ -108,6 +108,33 @@ export function useAnalysis(projectId?: string, projectStatus?: string): UseAnal
 
   return {
     analysis: data,
+    isLoading,
+    error,
+    mutate,
+  };
+}
+
+export interface UseBriefResult {
+  briefData: BriefResponse | undefined;
+  isLoading: boolean;
+  error: ApiError | undefined;
+  mutate: KeyedMutator<BriefResponse>;
+}
+
+export function useBrief(projectId?: string, projectStatus?: string): UseBriefResult {
+  const { data, error, isLoading, mutate } = useSWR<BriefResponse, ApiError>(
+    projectId ? `/projects/${projectId}/brief` : null,
+    () => apiClient.workflow.getBrief(projectId!),
+    {
+      revalidateOnFocus: true,
+      refreshInterval: () => {
+        return projectStatus === 'synthesizing' ? 2500 : 0;
+      },
+    }
+  );
+
+  return {
+    briefData: data,
     isLoading,
     error,
     mutate,

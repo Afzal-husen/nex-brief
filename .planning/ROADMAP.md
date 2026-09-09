@@ -17,10 +17,10 @@ NexBrief transforms client discovery call transcripts into clear, structured, an
 - [ ] **Phase 4: Brief Synthesis, Critique & Durable Checkpointing** - 11-section brief synthesis node, self-critique audit node, and SQLite-backed LangGraph state checkpointing.
 - [ ] **Phase 5: Workflow REST API & Human-in-the-Loop Endpoints** - FastAPI endpoints to trigger analysis, pause at human gates, submit clarifications, and approve briefs.
 - [ ] **Phase 6: Correction Logging & Evaluation Datasets (Story 14)** - Structured diff tracking between draft and approved briefs with JSONL evaluation dataset export.
-- [ ] **Phase 7: Frontend API Client & Project Dashboard** - Next.js typed API client, project management dashboard, and navigation skeleton.
+- [x] **Phase 7: Frontend API Client & Project Dashboard** - Next.js typed API client, project management dashboard, and navigation skeleton.
 - [x] **Phase 8: Transcript Ingestion & Fact Grounding UI** - Transcript paste/upload interface, epistemic breakdown cards, and click-to-highlight quote verification.
 - [x] **Phase 9: Interactive Gap Clarification UI** - Review interface for resolving contradictions, answering unknowns, and inspecting follow-up questions.
-- [ ] **Phase 10: Brief Markdown Editor & Final Approval UI** - 11-section brief viewer with critique warnings, rich/Markdown editor, and approval sign-off.
+- [x] **Phase 10: Brief Markdown Editor & Final Approval UI** - 11-section brief viewer with critique warnings, rich/Markdown editor, and approval sign-off.
 
 ## Phase Details
 
@@ -206,8 +206,8 @@ Plans:
 
 Plans:
 
-- [ ] 10-01: Build 11-section brief reader and critique display component.
-- [ ] 10-02: Build Markdown editor with diff review and final approval workflow.
+- [x] 10-01: Build 11-section brief reader and critique display component.
+- [x] 10-02: Build Markdown editor with diff review and final approval workflow.
 
 ## Progress
 
@@ -225,4 +225,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 7. Frontend API Client & Project Dashboard | 2/2 | Complete | 2026-09-09 |
 | 8. Transcript Ingestion & Fact Grounding UI | 2/2 | Complete | 2026-09-09 |
 | 9. Interactive Gap Clarification UI | 1/1 | Complete | 2026-09-09 |
-| 10. Brief Markdown Editor & Final Approval UI | 0/2 | Not started | - |
+| 10. Brief Markdown Editor & Final Approval UI | 2/2 | Complete | 2026-09-09 |

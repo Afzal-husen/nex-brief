@@ -21,7 +21,7 @@ def verify_grounding(state: ExtractionState) -> dict[str, Any]:
     # Attempt to get an LLM client for targeted retry if needed
     retry_llm = None
     try:
-        retry_llm = get_groq_llm(model="llama-3.1-8b-instant", temperature=0.0)
+        retry_llm = get_groq_llm(model="openai/gpt-oss-20b", temperature=0.0)
     except Exception:
         pass
 

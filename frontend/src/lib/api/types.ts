@@ -149,6 +149,59 @@ export interface ClarifyRequest {
 export interface ClarifyResponse {
   project_id: string;
   status: string;
-  draft_brief?: unknown;
-  critique_report?: unknown;
+  draft_brief?: ProjectBrief;
+  critique_report?: CritiqueReport;
+}
+
+export interface BriefSection {
+  key: string;
+  title: string;
+  content: string;
+  source_fact_ids?: string[];
+  inference_ids?: string[];
+  supporting_clarification_ids?: string[];
+}
+
+export interface CritiqueIssue {
+  id: string;
+  section_key: string;
+  issue_type: 'ungrounded_claim' | 'contradiction_neglect' | 'missing_constraint' | 'vague_deliverable';
+  severity: 'critical' | 'warning' | 'info';
+  explanation: string;
+  suggested_fix: string;
+}
+
+export interface CritiqueReport {
+  score: number;
+  summary: string;
+  issues: CritiqueIssue[];
+}
+
+export interface ProjectBrief {
+  id?: string;
+  project_id: string;
+  transcript_id?: string;
+  created_at?: string;
+  sections: Record<string, BriefSection>;
+  full_markdown: string;
+}
+
+export interface BriefResponse {
+  project_id: string;
+  status: string;
+  draft_brief?: ProjectBrief | null;
+  approved_brief?: ProjectBrief | null;
+  critique_report?: CritiqueReport | null;
+  approved_at?: string | null;
+}
+
+export interface ApproveRequest {
+  edited_brief?: Record<string, unknown> | null;
+}
+
+export interface ApproveResponse {
+  project_id: string;
+  status: string;
+  approved_at: string;
+  approved_brief: ProjectBrief;
 }

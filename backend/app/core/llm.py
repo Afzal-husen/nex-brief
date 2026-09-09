@@ -81,7 +81,7 @@ def clear_mock_critique_client() -> None:
 
 
 def get_groq_llm(
-    model: str = "llama-3.3-70b-versatile",
+    model: str = "openai/gpt-oss-120b",
     temperature: float = 0.0,
     timeout: int = 30,
     max_retries: int = 3,
@@ -96,8 +96,8 @@ def get_groq_llm(
 
 
 def get_extraction_llm_with_fallback(
-    primary_model: str = "llama-3.3-70b-versatile",
-    fallback_model: str = "llama-3.1-8b-instant",
+    primary_model: str = "openai/gpt-oss-120b",
+    fallback_model: str = "openai/gpt-oss-20b",
     temperature: float = 0.0,
     timeout: int = 30,
 ) -> Any:

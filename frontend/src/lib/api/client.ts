@@ -1,6 +1,9 @@
 import type {
   AnalyzeResponse,
   ApiErrorResponse,
+  ApproveRequest,
+  ApproveResponse,
+  BriefResponse,
   ClarifyResponse,
   DeleteProjectResponse,
   HealthResponse,
@@ -148,6 +151,18 @@ export const apiClient = {
       return request<ClarifyResponse>(`/projects/${projectId}/clarify`, {
         method: 'POST',
         body: JSON.stringify({ clarifications }),
+      });
+    },
+    getBrief: async (projectId: string): Promise<BriefResponse> => {
+      return request<BriefResponse>(`/projects/${projectId}/brief`);
+    },
+    approve: async (
+      projectId: string,
+      payload: ApproveRequest = {}
+    ): Promise<ApproveResponse> => {
+      return request<ApproveResponse>(`/projects/${projectId}/approve`, {
+        method: 'POST',
+        body: JSON.stringify(payload),
       });
     },
   },

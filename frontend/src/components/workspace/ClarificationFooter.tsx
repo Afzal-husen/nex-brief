@@ -4,12 +4,15 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight, CheckCircle2, AlertCircle, Sparkles } from 'lucide-react';
 
+import type { ProjectStatus } from '@/lib/api/types';
+
 interface ClarificationFooterProps {
   confirmedCount: number;
   inferredCount: number;
   contradictionCount: number;
   unknownCount: number;
   projectId: string;
+  status?: ProjectStatus;
 }
 
 export function ClarificationFooter({
@@ -18,12 +21,18 @@ export function ClarificationFooter({
   contradictionCount,
   unknownCount,
   projectId,
+  status,
 }: ClarificationFooterProps) {
   const router = useRouter();
   const clarificationItemsCount = contradictionCount + unknownCount;
+  const hasBrief = status === 'ready_for_review' || status === 'approved';
 
   const handleProceed = () => {
-    router.push(`/projects/${projectId}/clarify`);
+    if (hasBrief) {
+      router.push(`/projects/${projectId}/brief`);
+    } else {
+      router.push(`/projects/${projectId}/clarify`);
+    }
   };
 
   return (
@@ -64,8 +73,17 @@ export function ClarificationFooter({
             onClick={handleProceed}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 shadow-md shadow-indigo-500/20 active:scale-[0.98] transition-all cursor-pointer"
           >
-            <span>Proceed to Clarifications ({clarificationItemsCount} items)</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            {hasBrief ? (
+              <>
+                <span>{status === 'approved' ? 'View Approved Brief' : 'Review & Approve Brief'}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </>
+            ) : (
+              <>
+                <span>Proceed to Clarifications ({clarificationItemsCount} items)</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </>
+            )}
           </button>
         </div>
       </div>

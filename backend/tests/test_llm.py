@@ -14,8 +14,8 @@ from app.models.extraction import (
 
 
 def test_get_groq_llm_parameters():
-    llm = get_groq_llm(model="llama-3.3-70b-versatile", temperature=0.0, timeout=45)
-    assert llm.model_name == "llama-3.3-70b-versatile"
+    llm = get_groq_llm(model="openai/gpt-oss-120b", temperature=0.0, timeout=45)
+    assert llm.model_name == "openai/gpt-oss-120b"
     # ChatGroq clamps temperature 0.0 to 1e-8 internally
     assert llm.temperature <= 1e-6
     assert llm.request_timeout == 45
@@ -26,7 +26,7 @@ def test_get_extraction_llm_with_fallback():
     # RunnableWithFallbacks wraps primary with fallbacks
     assert hasattr(runnable, "fallbacks")
     assert len(runnable.fallbacks) == 1
-    assert runnable.fallbacks[0].model_name == "llama-3.1-8b-instant"
+    assert runnable.fallbacks[0].model_name == "openai/gpt-oss-20b"
 
 
 def test_mock_extraction_client_override():

@@ -217,7 +217,7 @@ export default function ClarificationPage() {
       }
 
       success('Brief Synthesis Complete', 'Your grounded project brief has been generated.');
-      router.push(`/projects/${projectId}`);
+      router.push(`/projects/${projectId}/brief`);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Failed to submit clarifications.';
       toastError('Synthesis Error', msg);
