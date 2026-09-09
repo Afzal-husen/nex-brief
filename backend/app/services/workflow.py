@@ -335,3 +335,57 @@ def approve_project_brief(
         "approved_at": record.approved_at,
         "approved_brief": json.loads(record.approved_brief_json),
     }
+
+
+def get_project_analysis_details(
+    session: Session,
+    project_id: str,
+    checkpointer_override: Any = None,
+) -> dict[str, Any]:
+    """
+    Retrieves the current or checkpointed extraction state for a project (UI-03, D-15).
+    """
+    project = session.get(Project, project_id)
+    if not project:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Project {project_id} not found",
+        )
+
+    stmt = select(Transcript).where(Transcript.project_id == project_id).order_by(Transcript.created_at.desc())
+    transcript = session.exec(stmt).first()
+    if not transcript:
+        return {
+            "project_id": project_id,
+            "status": project.status,
+            "confirmed_facts": [],
+            "inferred_points": [],
+            "contradictions": [],
+            "unknown_gaps": [],
+            "clarification_questions": [],
+        }
+
+    thread_id = f"project:{project_id}:transcript:{transcript.id}"
+    config = {"configurable": {"thread_id": thread_id}}
+
+    try:
+        with get_checkpointer(checkpointer_override) as active_checkpointer:
+            graph = build_extraction_graph(
+                checkpointer=active_checkpointer,
+                interrupt_before=["synthesize_brief"],
+            )
+            state_tuple = graph.get_state(config)
+            state = state_tuple.values if state_tuple else {}
+    except Exception:
+        state = {}
+
+    return {
+        "project_id": project_id,
+        "status": project.status,
+        "confirmed_facts": state.get("confirmed_facts", []),
+        "inferred_points": state.get("inferred_points", []),
+        "contradictions": state.get("contradictions", []),
+        "unknown_gaps": state.get("unknown_gaps", []),
+        "clarification_questions": state.get("clarification_questions", []),
+    }
+

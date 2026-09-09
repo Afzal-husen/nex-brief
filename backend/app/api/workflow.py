@@ -18,6 +18,7 @@ from app.models.extraction import (
 )
 from app.services.workflow import (
     approve_project_brief,
+    get_project_analysis_details,
     get_project_brief_details,
     resume_project_with_clarifications,
     trigger_project_analysis,
@@ -82,6 +83,23 @@ def analyze_project(
     Halts execution before synthesis so the human can review facts and answer unknowns.
     """
     return trigger_project_analysis(session=session, project_id=id)
+
+
+@router.get(
+    "/projects/{id}/analysis",
+    response_model=AnalyzeResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Get current or checkpointed analysis results",
+)
+def get_analysis(
+    id: str,
+    session: Session = Depends(get_session),
+):
+    """
+    Retrieves the latest extraction and analysis state for a project (UI-03, D-15).
+    """
+    return get_project_analysis_details(session=session, project_id=id)
+
 
 
 @router.post(

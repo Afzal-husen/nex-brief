@@ -1,9 +1,12 @@
 import type {
+  AnalyzeResponse,
   ApiErrorResponse,
   DeleteProjectResponse,
   HealthResponse,
   Project,
   ProjectCreatePayload,
+  Transcript,
+  TranscriptCreate,
 } from './types';
 
 export class ApiError extends Error {
@@ -110,6 +113,31 @@ export const apiClient = {
       return request<DeleteProjectResponse>(`/projects/${id}`, {
         method: 'DELETE',
       });
+    },
+  },
+  transcripts: {
+    list: async (projectId: string): Promise<Transcript[]> => {
+      return request<Transcript[]>(`/projects/${projectId}/transcripts`);
+    },
+    create: async (projectId: string, payload: TranscriptCreate): Promise<Transcript> => {
+      return request<Transcript>(`/projects/${projectId}/transcripts`, {
+        method: 'POST',
+        body: JSON.stringify({
+          title: payload.title,
+          raw_text: payload.raw_text,
+          source_type: payload.source_type || 'direct_paste',
+        }),
+      });
+    },
+  },
+  workflow: {
+    analyze: async (projectId: string): Promise<AnalyzeResponse> => {
+      return request<AnalyzeResponse>(`/projects/${projectId}/analyze`, {
+        method: 'POST',
+      });
+    },
+    getAnalysis: async (projectId: string): Promise<AnalyzeResponse> => {
+      return request<AnalyzeResponse>(`/projects/${projectId}/analysis`);
     },
   },
   health: {
