@@ -3,21 +3,6 @@ phase: 02-extraction-grounding-engine
 verified: 2026-09-09T12:24:00Z
 status: passed
 score: 6/6 must-haves verified
-covered_files:
-  - .planning/phases/02-extraction-grounding-engine/02-01-PLAN.md
-  - .planning/phases/02-extraction-grounding-engine/02-01-SUMMARY.md
-  - .planning/phases/02-extraction-grounding-engine/02-02-PLAN.md
-  - .planning/phases/02-extraction-grounding-engine/02-02-SUMMARY.md
-  - backend/app/models/extraction.py
-  - backend/app/core/llm.py
-  - backend/app/services/grounding.py
-  - backend/app/graph/extraction.py
-  - backend/app/services/extraction.py
-  - backend/tests/test_schemas.py
-  - backend/tests/test_llm.py
-  - backend/tests/test_grounding.py
-  - backend/tests/test_extraction_graph.py
-  - backend/tests/test_live_extraction.py
 behavior_unverified: 0
 ---
 
