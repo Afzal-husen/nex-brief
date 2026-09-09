@@ -1,19 +1,19 @@
 ---
 gsd_state_version: "1.0"
-current_phase: 7
-current_phase_name: Frontend API Client & Project Dashboard
-status: ready_to_discuss
-stopped_at: Phase 8 context gathered
-last_updated: "2026-09-09T12:43:21.711Z"
+current_phase: 8
+current_phase_name: Transcript Ingestion & Fact Grounding UI
+status: complete
+stopped_at: Phase 8 execution complete
+last_updated: "2026-09-09T13:00:00.000Z"
 last_activity: 2026-09-09
-last_activity_desc: Phase 6 (Correction Logging & Evaluation Datasets) completed with 60 passing tests
-state_head: 1b88e49135a3171d3ee2b20891b462960f42d433
+last_activity_desc: Phase 8 completed with grounded dual-pane discovery workspace, epistemic fact cards, quote highlighting, and clean Next.js build
+state_head: 5aa496b
 progress:
   total_phases: 10
-  completed_phases: 5
-  total_plans: 13
-  completed_plans: 13
-  percent: 50
+  completed_phases: 8
+  total_plans: 15
+  completed_plans: 15
+  percent: 80
 ---
 
 # Project State
@@ -23,16 +23,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-09-09)
 
 **Core value:** Turn unstructured discovery transcripts into verifiable, grounded project briefs where every fact is anchored to client statements, inferences are transparently labeled, and the user retains complete editorial authority.
-**Current focus:** Phase 8: Transcript Ingestion & Fact Grounding UI
+**Current focus:** Phase 8: Transcript Ingestion & Fact Grounding UI — COMPLETED
 
 ## Current Position
 
-Phase: 8 (Transcript Ingestion & Fact Grounding UI) — READY TO DISCUSS
-Plan: 0 of 2 in current phase
-Status: Phase 7 completed
-Last activity: 2026-09-09 — Phase 7 completed (typed API client, SWR hooks, dark-first Zinc UI primitives, Bento project card grid, metric summary pills, create & delete modals, Next.js 16 build passed)
+Phase: 8 (Transcript Ingestion & Fact Grounding UI) — COMPLETE
+Plan: 2 of 2 completed
+Status: Phase 8 completed
+Last activity: 2026-09-09 — Phase 8 completed (dual-pane resizable workspace, verbatim quote segmentation, soft glowing anchor pulse, epistemic filter cards, Next.js 16 build passed, 63 backend tests passing)
 
-Progress: [█████░░░░░] 50%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
