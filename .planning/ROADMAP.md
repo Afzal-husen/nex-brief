@@ -11,7 +11,7 @@ NexBrief transforms client discovery call transcripts into clear, structured, an
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Backend Foundation & Persistence** - FastAPI application shell, SQLModel models, SQLite database with WAL mode, and project/transcript CRUD endpoints.
+- [x] **Phase 1: Backend Foundation & Persistence** - FastAPI application shell, SQLModel models, SQLite database with WAL mode, and project/transcript CRUD endpoints.
 - [ ] **Phase 2: Extraction & Grounding Engine** - LangGraph extraction node with Groq (Llama 3.3 70B), Pydantic schemas, and programmatic quote-containment validation.
 - [ ] **Phase 3: Contradiction Detection & Follow-up Questions** - Semantic contradiction detection node and prioritized follow-up question generation for unknowns.
 - [ ] **Phase 4: Brief Synthesis, Critique & Durable Checkpointing** - 11-section brief synthesis node, self-critique audit node, and SQLite-backed LangGraph state checkpointing.
@@ -42,11 +42,11 @@ NexBrief transforms client discovery call transcripts into clear, structured, an
 Plans:
 **Wave 1**
 
-- [ ] 01-01: Setup pyproject dependencies, SQLite engine, SQLModel tables, and FastAPI app factory.
+- [x] 01-01: Setup pyproject dependencies, SQLite engine, SQLModel tables, and FastAPI app factory.
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02: Implement project and transcript API routers with normalization and automated pytest suite.
+- [x] 01-02: Implement project and transcript API routers with normalization and automated pytest suite.
 
 ### Phase 2: Extraction & Grounding Engine
 
@@ -216,7 +216,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Backend Foundation & Persistence | 0/2 | Not started | - |
+| 1. Backend Foundation & Persistence | 2/2 | Complete | 2026-09-09 |
 | 2. Extraction & Grounding Engine | 0/2 | Not started | - |
 | 3. Contradiction Detection & Follow-up Questions | 0/2 | Not started | - |
 | 4. Brief Synthesis, Critique & Durable Checkpointing | 0/2 | Not started | - |

@@ -1,0 +1,63 @@
+{
+  "contract": "1.0.0",
+  "flavor": "core",
+  "milestone": null,
+  "phases": [
+    {
+      "number": "1",
+      "name": "Backend Foundation & Persistence",
+      "status": "pending"
+    },
+    {
+      "number": "2",
+      "name": "Extraction & Grounding Engine",
+      "status": "pending"
+    },
+    {
+      "number": "3",
+      "name": "Contradiction Detection & Follow-up Questions",
+      "status": "pending"
+    },
+    {
+      "number": "4",
+      "name": "Brief Synthesis, Critique & Durable Checkpointing",
+      "status": "pending"
+    },
+    {
+      "number": "5",
+      "name": "Workflow REST API & Human-in-the-Loop Endpoints",
+      "status": "pending"
+    },
+    {
+      "number": "6",
+      "name": "Correction Logging & Evaluation Datasets",
+      "status": "pending"
+    },
+    {
+      "number": "7",
+      "name": "Frontend API Client & Project Dashboard",
+      "status": "pending"
+    },
+    {
+      "number": "8",
+      "name": "Transcript Ingestion & Fact Grounding UI",
+      "status": "pending"
+    },
+    {
+      "number": "9",
+      "name": "Interactive Gap Clarification UI",
+      "status": "pending"
+    },
+    {
+      "number": "10",
+      "name": "Brief Markdown Editor & Final Approval UI",
+      "status": "pending"
+    }
+  ],
+  "next": {
+    "command": "/gsd-progress --next",
+    "label": "Advance to the next step",
+    "reason": "Phase 1 of 10 · 0% · executing"
+  },
+  "updated_at": "2026-09-09T05:14:06.332Z"
+}
