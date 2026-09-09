@@ -2,6 +2,7 @@ from typing import Any, Literal
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from backend.app.core.llm import get_structured_clarification_client
+from backend.app.graph.state import ExtractionState
 from backend.app.models.extraction import (
     ClarificationQuestion,
     Contradiction,
@@ -42,7 +43,7 @@ def _score_candidate(item: Contradiction | UnknownGap) -> tuple[int, str]:
         return (5, item.id)
 
 
-def generate_clarifications_node(state: dict[str, Any]) -> dict[str, Any]:
+def generate_clarifications_node(state: ExtractionState) -> dict[str, Any]:
     """
     LangGraph node that generates and ranks the top 3-5 prioritized follow-up questions
     targeting identified contradictions and unknowns (CLARIFY-01).

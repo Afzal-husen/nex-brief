@@ -2,6 +2,7 @@ from typing import Any
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from backend.app.core.llm import get_structured_contradiction_client
+from backend.app.graph.state import ExtractionState
 from backend.app.models.extraction import (
     Contradiction,
     RawContradictionCandidate,
@@ -25,7 +26,7 @@ CRITICAL RULES:
 """
 
 
-def detect_contradictions_node(state: dict[str, Any]) -> dict[str, Any]:
+def detect_contradictions_node(state: ExtractionState) -> dict[str, Any]:
     """
     LangGraph node that detects internal contradictions in discovery transcripts (EXTRACT-05),
     verifying verbatim quote substrings for both sides of the conflict.
