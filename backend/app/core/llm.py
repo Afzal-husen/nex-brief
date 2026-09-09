@@ -6,12 +6,18 @@ from backend.app.models.extraction import (
     RawContradictionPayload,
     RawClarificationPayload,
 )
+from backend.app.models.brief import (
+    RawBriefPayload,
+    RawCritiquePayload,
+)
 
 
 # Global mock overrides for testing
 _mock_extraction_client: Any = None
 _mock_contradiction_client: Any = None
 _mock_clarification_client: Any = None
+_mock_synthesis_client: Any = None
+_mock_critique_client: Any = None
 
 
 def set_mock_extraction_client(client: Any) -> None:
@@ -50,6 +56,30 @@ def clear_mock_clarification_client() -> None:
     _mock_clarification_client = None
 
 
+def set_mock_synthesis_client(client: Any) -> None:
+    """Set a mock client for brief synthesis."""
+    global _mock_synthesis_client
+    _mock_synthesis_client = client
+
+
+def clear_mock_synthesis_client() -> None:
+    """Clear the mock synthesis client."""
+    global _mock_synthesis_client
+    _mock_synthesis_client = None
+
+
+def set_mock_critique_client(client: Any) -> None:
+    """Set a mock client for critique audit."""
+    global _mock_critique_client
+    _mock_critique_client = client
+
+
+def clear_mock_critique_client() -> None:
+    """Clear the mock critique client."""
+    global _mock_critique_client
+    _mock_critique_client = None
+
+
 def get_groq_llm(
     model: str = "llama-3.3-70b-versatile",
     temperature: float = 0.0,
@@ -72,7 +102,7 @@ def get_extraction_llm_with_fallback(
     timeout: int = 30,
 ) -> Any:
     """
-    Returns primary 70b model with automatic fallback to 8b on rate limits or transient errors (D-01).
+    Returns primary 70b model with automatic fallback to 8b on rate limits or transient errors.
     """
     primary = get_groq_llm(
         model=primary_model,
@@ -88,10 +118,7 @@ def get_extraction_llm_with_fallback(
 
 
 def get_structured_extraction_client() -> Any:
-    """
-    Returns an extraction client with structured output binding for RawExtractionPayload (D-24).
-    If a mock client is configured, returns the mock client instead.
-    """
+    """Returns an extraction client with structured output binding for RawExtractionPayload."""
     if _mock_extraction_client is not None:
         return _mock_extraction_client
 
@@ -100,10 +127,7 @@ def get_structured_extraction_client() -> Any:
 
 
 def get_structured_contradiction_client() -> Any:
-    """
-    Returns a client with structured output binding for RawContradictionPayload (D-06).
-    If a mock client is configured, returns the mock client instead.
-    """
+    """Returns a client with structured output binding for RawContradictionPayload."""
     if _mock_contradiction_client is not None:
         return _mock_contradiction_client
 
@@ -112,12 +136,27 @@ def get_structured_contradiction_client() -> Any:
 
 
 def get_structured_clarification_client() -> Any:
-    """
-    Returns a client with structured output binding for RawClarificationPayload.
-    If a mock client is configured, returns the mock client instead.
-    """
+    """Returns a client with structured output binding for RawClarificationPayload."""
     if _mock_clarification_client is not None:
         return _mock_clarification_client
 
     llm = get_extraction_llm_with_fallback()
     return llm.with_structured_output(RawClarificationPayload)
+
+
+def get_structured_synthesis_client() -> Any:
+    """Returns a client with structured output binding for RawBriefPayload."""
+    if _mock_synthesis_client is not None:
+        return _mock_synthesis_client
+
+    llm = get_extraction_llm_with_fallback()
+    return llm.with_structured_output(RawBriefPayload)
+
+
+def get_structured_critique_client() -> Any:
+    """Returns a client with structured output binding for RawCritiquePayload."""
+    if _mock_critique_client is not None:
+        return _mock_critique_client
+
+    llm = get_extraction_llm_with_fallback()
+    return llm.with_structured_output(RawCritiquePayload)

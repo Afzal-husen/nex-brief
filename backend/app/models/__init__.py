@@ -31,6 +31,19 @@ from backend.app.models.extraction import (
     RawQuestionCandidate,
     RawClarificationPayload,
 )
+from backend.app.models.brief import (
+    SectionKeyEnum,
+    SECTION_TITLES,
+    BriefSection,
+    ProjectBrief,
+    UserClarification,
+    CritiqueIssueType,
+    CritiqueIssue,
+    CritiqueReport,
+    RawBriefSection,
+    RawBriefPayload,
+    RawCritiquePayload,
+)
 
 __all__ = [
     "Project",
@@ -60,4 +73,15 @@ __all__ = [
     "ClarificationQuestion",
     "RawQuestionCandidate",
     "RawClarificationPayload",
+    "SectionKeyEnum",
+    "SECTION_TITLES",
+    "BriefSection",
+    "ProjectBrief",
+    "UserClarification",
+    "CritiqueIssueType",
+    "CritiqueIssue",
+    "CritiqueReport",
+    "RawBriefSection",
+    "RawBriefPayload",
+    "RawCritiquePayload",
 ]

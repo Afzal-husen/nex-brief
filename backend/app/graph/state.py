@@ -9,13 +9,19 @@ from backend.app.models.extraction import (
     UnverifiedContradiction,
     ClarificationQuestion,
 )
+from backend.app.models.brief import (
+    ProjectBrief,
+    UserClarification,
+    CritiqueReport,
+)
 
 
 class ExtractionState(TypedDict, total=False):
     """
-    Central state container for the LangGraph extraction pipeline.
+    Central state container for the LangGraph extraction & brief synthesis pipeline.
     Tracks raw outputs, verified epistemic facts, deductions, gaps,
-    contradictions, and follow-up clarification questions.
+    contradictions, follow-up clarification questions, user clarifications,
+    synthesized brief, and automated critique audit reports.
     """
     transcript_id: str
     project_id: str
@@ -29,5 +35,8 @@ class ExtractionState(TypedDict, total=False):
     contradictions: list[Contradiction]
     unverified_contradictions: list[UnverifiedContradiction]
     clarification_questions: list[ClarificationQuestion]
+    user_clarifications: list[UserClarification]
+    draft_brief: ProjectBrief | None
+    critique_report: CritiqueReport | None
     retry_count: int
     errors: list[str]
