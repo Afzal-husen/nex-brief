@@ -27,12 +27,10 @@ def get_groq_llm(
     max_retries: int = 3,
 ) -> ChatGroq:
     """Initialize a ChatGroq client with the specified configuration."""
-    api_key = settings.groq_api_key or "gsk_dummy_key_for_testing"
     return ChatGroq(
-        model_name=model,
-        groq_api_key=api_key,
+        model=model,
         temperature=temperature,
-        request_timeout=timeout,
+        timeout=timeout,
         max_retries=max_retries,
     )
 

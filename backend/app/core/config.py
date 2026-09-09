@@ -28,13 +28,6 @@ class Settings(BaseModel):
         if origin.strip()
     ])
 
-    # Groq API
-    GROQ_API_KEY: str = Field(default_factory=lambda: os.getenv("GROQ_API_KEY", ""))
-
-    @property
-    def groq_api_key(self) -> str:
-        return self.GROQ_API_KEY
-
     @property
     def database_url(self) -> str:
         return self.DATABASE_URL

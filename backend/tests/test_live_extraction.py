@@ -3,8 +3,10 @@ import pytest
 from backend.app.core.config import settings
 from backend.app.services.extraction import run_extraction_pipeline
 
+GROQ_KEY = os.getenv("GROQ_API_KEY", "")
+
 pytestmark = pytest.mark.skipif(
-    not settings.groq_api_key or settings.groq_api_key == "gsk_dummy_key_for_testing",
+    not GROQ_KEY or GROQ_KEY == "gsk_dummy_key_for_testing",
     reason="GROQ_API_KEY is not configured",
 )
 
