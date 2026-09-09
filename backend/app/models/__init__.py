@@ -4,6 +4,7 @@ from backend.app.models.project import (
     ProjectCreate,
     ProjectRead,
     ProjectUpdate,
+    ProjectStatus,
 )
 from backend.app.models.transcript import (
     Transcript,
@@ -44,6 +45,7 @@ from backend.app.models.brief import (
     RawBriefPayload,
     RawCritiquePayload,
 )
+from backend.app.models.brief_record import ProjectBriefRecord
 
 __all__ = [
     "Project",

@@ -5,15 +5,26 @@ from sqlmodel import SQLModel, Field, Relationship
 
 if TYPE_CHECKING:
     from backend.app.models.transcript import Transcript
+    from backend.app.models.brief_record import ProjectBriefRecord
 
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+class ProjectStatus:
+    CREATED = "created"
+    ANALYZING = "analyzing"
+    AWAITING_CLARIFICATION = "awaiting_clarification"
+    SYNTHESIZING = "synthesizing"
+    READY_FOR_REVIEW = "ready_for_review"
+    APPROVED = "approved"
+
+
 class ProjectBase(SQLModel):
     name: str = Field(index=True, min_length=1, max_length=255)
     description: Optional[str] = Field(default=None, max_length=2000)
+    status: str = Field(default=ProjectStatus.CREATED, index=True)
 
 
 class Project(ProjectBase, table=True):
@@ -31,10 +42,15 @@ class Project(ProjectBase, table=True):
         back_populates="project",
         sa_relationship_kwargs={"cascade": "all, delete-orphan"},
     )
+    brief_record: Optional["ProjectBriefRecord"] = Relationship(
+        back_populates="project",
+        sa_relationship_kwargs={"cascade": "all, delete-orphan", "uselist": False},
+    )
 
 
-class ProjectCreate(ProjectBase):
-    pass
+class ProjectCreate(SQLModel):
+    name: str = Field(min_length=1, max_length=255)
+    description: Optional[str] = Field(default=None, max_length=2000)
 
 
 class ProjectRead(ProjectBase):
@@ -46,3 +62,4 @@ class ProjectRead(ProjectBase):
 class ProjectUpdate(SQLModel):
     name: Optional[str] = Field(default=None, min_length=1, max_length=255)
     description: Optional[str] = Field(default=None, max_length=2000)
+    status: Optional[str] = Field(default=None)

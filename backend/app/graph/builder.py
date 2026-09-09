@@ -12,7 +12,10 @@ from backend.app.graph.nodes import (
 )
 
 
-def build_extraction_graph(checkpointer: Any = None) -> Any:
+def build_extraction_graph(
+    checkpointer: Any = None,
+    interrupt_before: list[str] | None = None,
+) -> Any:
     """
     Constructs and compiles the 6-node LangGraph extraction and brief synthesis state machine (D-15):
     extract_knowledge -> verify_grounding -> detect_contradictions -> generate_clarifications -> synthesize_brief -> critique_brief -> END
@@ -34,6 +37,10 @@ def build_extraction_graph(checkpointer: Any = None) -> Any:
     workflow.add_edge("synthesize_brief", "critique_brief")
     workflow.add_edge("critique_brief", END)
 
+    compile_kwargs: dict[str, Any] = {}
     if checkpointer is not None:
-        return workflow.compile(checkpointer=checkpointer)
-    return workflow.compile()
+        compile_kwargs["checkpointer"] = checkpointer
+    if interrupt_before is not None:
+        compile_kwargs["interrupt_before"] = interrupt_before
+
+    return workflow.compile(**compile_kwargs)

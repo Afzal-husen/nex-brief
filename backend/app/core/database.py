@@ -38,9 +38,9 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
 
 def init_db() -> None:
     """Initialize database tables registered with SQLModel."""
-    # Import models here to ensure they are registered with SQLModel.metadata
     from backend.app.models.project import Project  # noqa: F401
     from backend.app.models.transcript import Transcript  # noqa: F401
+    from backend.app.models.brief_record import ProjectBriefRecord  # noqa: F401
 
     SQLModel.metadata.create_all(engine)
 
