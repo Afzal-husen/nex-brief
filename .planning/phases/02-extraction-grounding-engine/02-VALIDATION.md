@@ -1,9 +1,9 @@
 ---
 phase: "02"
 slug: "extraction-grounding-engine"
-status: draft
+status: validated
 nyquist_compliant: true
-wave_0_complete: false
+wave_0_complete: true
 created: "2026-09-09"
 ---
 
@@ -38,10 +38,10 @@ created: "2026-09-09"
 
 | Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| 02-01-01 | 01 | 1 | EXTRACT-01, EXTRACT-03, EXTRACT-04 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_schemas.py` | ❌ W0 | ⬜ pending |
-| 02-01-02 | 01 | 1 | EXTRACT-01 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_llm.py` | ❌ W0 | ⬜ pending |
-| 02-02-01 | 02 | 2 | EXTRACT-01, EXTRACT-02 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_grounding.py` | ❌ W0 | ⬜ pending |
-| 02-02-02 | 02 | 2 | EXTRACT-01, EXTRACT-02, EXTRACT-03, EXTRACT-04 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_extraction_graph.py` | ❌ W0 | ⬜ pending |
+| 02-01-01 | 01 | 1 | EXTRACT-01, EXTRACT-03, EXTRACT-04 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_schemas.py` | ✅ | ✅ green |
+| 02-01-02 | 01 | 1 | EXTRACT-01 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_llm.py` | ✅ | ✅ green |
+| 02-02-01 | 02 | 2 | EXTRACT-01, EXTRACT-02 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_grounding.py` | ✅ | ✅ green |
+| 02-02-02 | 02 | 2 | EXTRACT-01, EXTRACT-02, EXTRACT-03, EXTRACT-04 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_extraction_graph.py` | ✅ | ✅ green |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -49,9 +49,9 @@ created: "2026-09-09"
 
 ## Wave 0 Requirements
 
-- [ ] `backend/tests/test_schemas.py` — unit tests for Pydantic epistemic models and categories
-- [ ] `backend/tests/test_grounding.py` — unit tests for verbatim substring verification and span extraction
-- [ ] `backend/tests/test_extraction_graph.py` — unit tests for LangGraph state machine execution and retry logic
+- [x] `backend/tests/test_schemas.py` — unit tests for Pydantic epistemic models and categories
+- [x] `backend/tests/test_grounding.py` — unit tests for verbatim substring verification and span extraction
+- [x] `backend/tests/test_extraction_graph.py` — unit tests for LangGraph state machine execution and retry logic
 
 ---
 
