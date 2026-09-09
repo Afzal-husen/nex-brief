@@ -2,7 +2,7 @@ from contextlib import contextmanager
 from typing import Any, Generator
 from langgraph.checkpoint.sqlite import SqliteSaver
 from backend.app.core.config import settings
-from backend.app.graph.extraction import build_extraction_graph, ExtractionState
+from backend.app.graph import build_extraction_graph, ExtractionState
 from backend.app.models.extraction import ExtractionResult
 from backend.app.services.transcript import normalize_transcript_text
 
