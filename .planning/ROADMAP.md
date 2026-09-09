@@ -82,8 +82,8 @@ Plans:
 
 Plans:
 
-- [ ] 03-01: Build contradiction detection node with claim comparison logic.
-- [ ] 03-02: Build follow-up question prioritization node with test suite.
+- [x] 03-01: Build contradiction detection node with claim comparison logic.
+- [x] 03-02: Build follow-up question prioritization node with test suite.
 
 ### Phase 4: Brief Synthesis, Critique & Durable Checkpointing
 
@@ -218,7 +218,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 |-------|----------------|--------|-----------|
 | 1. Backend Foundation & Persistence | 2/2 | Complete | 2026-09-09 |
 | 2. Extraction & Grounding Engine | 2/2 | Complete | 2026-09-09 |
-| 3. Contradiction Detection & Follow-up Questions | 0/2 | Not started | - |
+| 3. Contradiction Detection & Follow-up Questions | 2/2 | Complete | 2026-09-09 |
 | 4. Brief Synthesis, Critique & Durable Checkpointing | 0/2 | Not started | - |
 | 5. Workflow REST API & Human-in-the-Loop Endpoints | 0/2 | Not started | - |
 | 6. Correction Logging & Evaluation Datasets | 0/1 | Not started | - |

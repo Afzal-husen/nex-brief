@@ -23,11 +23,11 @@
 - [x] **EXTRACT-02**: System programmatically validates that every `source_quote` exists as an exact substring in `transcript_text`.
 - [x] **EXTRACT-03**: System identifies inferred deductions and marks them explicitly with epistemic status `inferred`.
 - [x] **EXTRACT-04**: System identifies missing critical information gaps (`unknowns`) needed to scope the project.
-- [ ] **EXTRACT-05**: System detects internal contradictions or mutually exclusive statements made in the transcript.
+- [x] **EXTRACT-05**: System detects internal contradictions or mutually exclusive statements made in the transcript.
 
 ### Clarification & Human Interrupt Gate
 
-- [ ] **CLARIFY-01**: System generates top 3-5 prioritized follow-up questions targeting the identified unknowns.
+- [x] **CLARIFY-01**: System generates top 3-5 prioritized follow-up questions targeting the identified unknowns.
 - [ ] **CLARIFY-02**: System interrupts graph execution after extraction to expose state for human inspection.
 - [ ] **CLARIFY-03**: User can submit clarifications, answer unknowns, and resolve contradictions via REST API (`POST /projects/{id}/clarify`).
 
