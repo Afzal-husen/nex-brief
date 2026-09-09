@@ -8,19 +8,28 @@ from backend.app.models.extraction import (
     UnverifiedCandidate,
     RawExtractionPayload,
     FactCategory,
+    Contradiction,
+    UnverifiedContradiction,
+    ClarificationQuestion,
 )
 from backend.app.services.grounding import verify_candidate_facts
+from backend.app.graph.contradiction import detect_contradictions_node
+from backend.app.graph.clarification import generate_clarifications_node
 
 
 class ExtractionState(TypedDict, total=False):
     transcript_id: str
     project_id: str
     transcript_text: str
+    normalized_text: str
     raw_payload: RawExtractionPayload | None
     confirmed_facts: list[ConfirmedFact]
     inferred_points: list[InferredPoint]
     unknown_gaps: list[UnknownGap]
     unverified_candidates: list[UnverifiedCandidate]
+    contradictions: list[Contradiction]
+    unverified_contradictions: list[UnverifiedContradiction]
+    clarification_questions: list[ClarificationQuestion]
     retry_count: int
     errors: list[str]
 
@@ -148,16 +157,21 @@ def verify_grounding(state: ExtractionState) -> dict[str, Any]:
 
 def build_extraction_graph(checkpointer: Any = None) -> Any:
     """
-    Constructs and compiles the two-node LangGraph extraction state machine (D-20).
+    Constructs and compiles the 4-node LangGraph extraction state machine (D-05):
+    extract_knowledge -> verify_grounding -> detect_contradictions -> generate_clarifications -> END
     """
     workflow = StateGraph(ExtractionState)
 
     workflow.add_node("extract_knowledge", extract_knowledge)
     workflow.add_node("verify_grounding", verify_grounding)
+    workflow.add_node("detect_contradictions", detect_contradictions_node)
+    workflow.add_node("generate_clarifications", generate_clarifications_node)
 
     workflow.add_edge(START, "extract_knowledge")
     workflow.add_edge("extract_knowledge", "verify_grounding")
-    workflow.add_edge("verify_grounding", END)
+    workflow.add_edge("verify_grounding", "detect_contradictions")
+    workflow.add_edge("detect_contradictions", "generate_clarifications")
+    workflow.add_edge("generate_clarifications", END)
 
     if checkpointer is not None:
         return workflow.compile(checkpointer=checkpointer)

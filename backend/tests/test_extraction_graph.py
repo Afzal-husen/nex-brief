@@ -90,9 +90,16 @@ def test_extraction_graph_execution_with_mock():
         assert len(unknowns) == 1
         assert unknowns[0].impact_level == "high"
 
+        # Assert clarification questions generated in 4-node pipeline
+        questions = final_state.get("clarification_questions", [])
+        assert len(questions) == 1
+        assert questions[0].target_id == unknowns[0].id
+        assert questions[0].priority == 1
+
         # Verify state persistence via checkpointer
         state_tuple = graph.get_state(config)
         assert state_tuple.values["confirmed_facts"] == confirmed
+        assert state_tuple.values["clarification_questions"] == questions
     finally:
         clear_mock_extraction_client()
 
@@ -126,6 +133,8 @@ def test_zero_facts_emits_fallback_unknown():
         # D-15: Fallback UnknownGap created
         assert len(final_state["unknown_gaps"]) == 1
         assert "no verifiable project requirements" in final_state["unknown_gaps"][0].missing_information
+        # Question generated targeting the fallback gap
+        assert len(final_state["clarification_questions"]) == 1
     finally:
         clear_mock_extraction_client()
 
@@ -140,7 +149,15 @@ def test_run_extraction_pipeline_service():
                 speaker="Client",
                 category=FactCategory.BUDGET,
             )
-        ]
+        ],
+        unknowns=[
+            RawUnknownCandidate(
+                missing_information="Deployment target infrastructure",
+                impact_level="high",
+                suggested_question="Where should this be hosted?",
+                category=FactCategory.TECH_STACK,
+            )
+        ],
     )
 
     set_mock_extraction_client(mock_client)
@@ -156,5 +173,86 @@ def test_run_extraction_pipeline_service():
         assert isinstance(result, ExtractionResult)
         assert len(result.confirmed_facts) == 1
         assert result.confirmed_facts[0].source_quote == "We have around $50,000 budgeted"
+        assert len(result.clarification_questions) == 1
+        assert result.clarification_questions[0].target_type == "unknown_gap"
     finally:
         clear_mock_extraction_client()
+
+
+def test_pipeline_detects_contradictions_and_prioritizes_questions():
+    from backend.app.core.llm import (
+        set_mock_contradiction_client,
+        clear_mock_contradiction_client,
+    )
+    from backend.app.models.extraction import (
+        RawContradictionCandidate,
+        RawContradictionPayload,
+    )
+
+    transcript = (
+        "Client: We must launch by June 30th.\n"
+        "Agency: Can your team start immediately?\n"
+        "Client: Unfortunately nobody can start until August."
+    )
+
+    mock_extract = MagicMock()
+    mock_extract.invoke.return_value = RawExtractionPayload(
+        facts=[
+            RawFactCandidate(
+                statement="Must launch by June 30th",
+                source_quote="We must launch by June 30th.",
+                speaker="Client",
+                category=FactCategory.TIMELINE,
+            )
+        ],
+        unknowns=[
+            RawUnknownCandidate(
+                missing_information="Cloud budget allocation",
+                impact_level="high",
+                suggested_question="What is the budget?",
+                category=FactCategory.BUDGET,
+            )
+        ],
+    )
+
+    mock_contradict = MagicMock()
+    mock_contradict.invoke.return_value = RawContradictionPayload(
+        contradictions=[
+            RawContradictionCandidate(
+                claim_a="Launch by June 30th",
+                quote_a="We must launch by June 30th.",
+                claim_b="Cannot start until August",
+                quote_b="nobody can start until August.",
+                conflict_rationale="June 30th launch conflicts with August start",
+                severity="direct_conflict",
+                category=FactCategory.TIMELINE,
+            )
+        ]
+    )
+
+    set_mock_extraction_client(mock_extract)
+    set_mock_contradiction_client(mock_contradict)
+    try:
+        memory_cp = MemorySaver()
+        result = run_extraction_pipeline(
+            transcript_id="conflict-test-01",
+            transcript_text=transcript,
+            checkpointer=memory_cp,
+        )
+
+        assert len(result.confirmed_facts) == 1
+        assert len(result.contradictions) == 1
+        assert result.contradictions[0].severity == "direct_conflict"
+        assert len(result.contradictions[0].spans_a) == 1
+        assert len(result.contradictions[0].spans_b) == 1
+
+        # Priority 1: Contradiction, Priority 2: Unknown gap
+        assert len(result.clarification_questions) == 2
+        assert result.clarification_questions[0].priority == 1
+        assert result.clarification_questions[0].target_type == "contradiction"
+        assert result.clarification_questions[0].target_id == result.contradictions[0].id
+        assert result.clarification_questions[1].priority == 2
+        assert result.clarification_questions[1].target_type == "unknown_gap"
+    finally:
+        clear_mock_extraction_client()
+        clear_mock_contradiction_client()

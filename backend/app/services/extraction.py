@@ -41,6 +41,14 @@ def run_extraction_pipeline(
         "transcript_id": transcript_id,
         "project_id": project_id,
         "transcript_text": normalized_text,
+        "normalized_text": normalized_text,
+        "confirmed_facts": [],
+        "inferred_points": [],
+        "unknown_gaps": [],
+        "unverified_candidates": [],
+        "contradictions": [],
+        "unverified_contradictions": [],
+        "clarification_questions": [],
         "retry_count": 0,
         "errors": [],
     }
@@ -60,4 +68,7 @@ def run_extraction_pipeline(
         inferred_points=final_state.get("inferred_points", []),
         unknown_gaps=final_state.get("unknown_gaps", []),
         unverified_candidates=final_state.get("unverified_candidates", []),
+        contradictions=final_state.get("contradictions", []),
+        unverified_contradictions=final_state.get("unverified_contradictions", []),
+        clarification_questions=final_state.get("clarification_questions", []),
     )
