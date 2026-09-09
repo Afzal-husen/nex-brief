@@ -1,16 +1,16 @@
 # Graph Report - nex-brief  (2026-09-09)
 
 ## Corpus Check
-- 143 files · ~213,352 words
+- 168 files · ~305,211 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1148 nodes · 1995 edges · 101 communities (93 shown, 8 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 139 edges (avg confidence: 0.53)
+- 1313 nodes · 2208 edges · 105 communities (95 shown, 10 thin omitted)
+- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 139 edges (avg confidence: 0.53)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9f188779`
+- Built from commit: `67915366`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -18,7 +18,7 @@
 - User Stories
 - devDependencies
 - compilerOptions
-- models/__init__.py
+- ExtractionState
 - Project
 - Architecture
 - Codebase Concerns
@@ -26,7 +26,7 @@
 - Coding Conventions
 - External Integrations
 - Codebase Structure
-- layout.tsx
+- ProjectGrid.tsx
 - Testing Patterns
 - LangGraph Workflow Specification
 - frontend/README.md
@@ -36,8 +36,9 @@
 - eslint.config.mjs
 - next.config.ts
 - postcss.config.mjs
+- Phase 7: Frontend API Client & Project Dashboard - Context
 - backend
-- Communities (68 total, 7 thin omitted)
+- Communities (101 total, 8 thin omitted)
 - AGENTS.md
 - Implications for Roadmap
 - Phase 1: Backend Foundation & Persistence - Context
@@ -45,17 +46,17 @@
 - v1 Requirements
 - Architecture Research
 - Feature Research
-- test_grounding.py
+- find_quote_spans
 - NexBrief
 - test_api.py
 - Pitfalls Research
 - Stack Research
 - Project State
 - Phase 1: Backend Foundation & Persistence - Discussion Log
-- client_fixture
+- Phase 7 — UI Design Contract
 - Phase 1 Plan 01-01 Summary: Backend Environment, Database & Schemas
 - Phase 1 Plan 01-02 Summary: Transcript Normalization, REST API Endpoints & Verification
-- transcripts.py
+- database.py
 - Phase 2: Extraction & Grounding Engine - Research
 - Phase 2: Extraction & Grounding Engine - Context
 - app/__init__.py
@@ -71,12 +72,12 @@
 - Phase 03 — Validation Strategy
 - Phase 2 Plan 02-01 Summary: Epistemic Schemas & Groq LLM Client
 - Phase 2 Plan 02-02 Summary: Verbatim Grounding Verifier & LangGraph Pipeline
-- clear_mock_clarification_client
+- Technical Analysis
 - Plan 03-01 Summary: Contradiction Detection Node with Verbatim Grounding
 - Plan 03-02 Summary: Prioritized Question Generator Node & 4-Node Pipeline Integration
-- llm.py
+- models/__init__.py
 - CorrectionLog
-- Transcript
+- Phase 7: Frontend API Client & Project Dashboard - Discussion Log
 - test_correction_eval.py
 - api/workflow.py
 - Phase 4: Brief Synthesis, Critique & Durable Checkpointing - Context
@@ -93,18 +94,20 @@
 - Phase 06 — Validation Strategy
 - Success Criteria Verification
 - Success Criteria Verification
-- conftest.py
+- Verification Evidence
 - Plan 04-01 Summary: Brief Synthesis & Critique Nodes
 - Plan 04-02 Summary: 6-Node Pipeline Integration & Durable SQLite Checkpointing
 - Plan 05-01 Summary: Brief Record & Analysis Interrupt Endpoint
 - Plan 05-02 Summary: Clarification Resumption & Brief Approval Endpoints
 - Plan 06-01 Summary: Correction Logging & Evaluation Datasets (Story 14)
-- health_check
-- set_sqlite_pragma
+- ProjectBriefRecord
+- run_export
 - eval/__init__.py
+- Phase 7: Plan 01 Summary — Typed API Client & UI Primitives
+- Phase 7: Plan 02 Summary — Project Dashboard, Modals & Workspace
 
 ## God Nodes (most connected - your core abstractions)
-1. `Communities (68 total, 7 thin omitted)` - 53 edges
+1. `Communities (101 total, 8 thin omitted)` - 80 edges
 2. `ExtractionState` - 42 edges
 3. `FactCategory` - 41 edges
 4. `Project` - 33 edges
@@ -116,41 +119,41 @@
 10. `generate_clarifications_node()` - 19 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `create_transcript()` --uses--> `Project`  [INFERRED]
-  backend/app/api/transcripts.py → backend/app/models/project.py
-- `list_project_transcripts()` --uses--> `Project`  [INFERRED]
-  backend/app/api/transcripts.py → backend/app/models/project.py
 - `ClarifyRequest` --uses--> `UserClarification`  [INFERRED]
   backend/app/api/workflow.py → backend/app/models/brief.py
 - `ClarifyResponse` --uses--> `CritiqueReport`  [INFERRED]
   backend/app/api/workflow.py → backend/app/models/brief.py
 - `ClarifyResponse` --uses--> `ProjectBrief`  [INFERRED]
   backend/app/api/workflow.py → backend/app/models/brief.py
+- `build_extraction_graph()` --indirect_call--> `critique_brief_node()`  [INFERRED]
+  backend/app/graph/builder.py → backend/app/graph/nodes/critique_brief.py
+- `build_extraction_graph()` --indirect_call--> `synthesize_brief_node()`  [INFERRED]
+  backend/app/graph/builder.py → backend/app/graph/nodes/synthesize_brief.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (101 total, 8 thin omitted)
+## Communities (105 total, 10 thin omitted)
 
 ### Community 0 - "User Stories"
 Cohesion: 0.10
 Nodes (19): 10. Create a Project Brief, 11. Review the Brief, 12. Edit the Brief, 13. Approve the Brief, 14. Learn From Corrections, 1. Create a Project, 2. Add a Discovery Call, 3. Understand the Client (+11 more)
 
 ### Community 1 - "devDependencies"
-Cohesion: 0.06
-Nodes (34): babel-plugin-react-compiler, eslint, eslint-config-next, dependencies, next, react, react-dom, devDependencies (+26 more)
+Cohesion: 0.05
+Nodes (38): babel-plugin-react-compiler, eslint, eslint-config-next, dependencies, lucide-react, next, react, react-dom (+30 more)
 
 ### Community 2 - "compilerOptions"
 Cohesion: 0.07
 Nodes (28): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+20 more)
 
-### Community 3 - "models/__init__.py"
-Cohesion: 0.08
-Nodes (77): AnalyzeResponse, clear_mock_contradiction_client(), get_structured_clarification_client(), get_structured_contradiction_client(), Returns a client with structured output binding for RawContradictionPayload., Returns a client with structured output binding for RawClarificationPayload., Set a mock client for structured contradiction detection., Clear the mock contradiction client. (+69 more)
+### Community 3 - "ExtractionState"
+Cohesion: 0.05
+Nodes (111): AnalyzeResponse, clear_mock_clarification_client(), clear_mock_contradiction_client(), clear_mock_critique_client(), clear_mock_extraction_client(), clear_mock_synthesis_client(), get_extraction_llm_with_fallback(), get_groq_llm() (+103 more)
 
 ### Community 4 - "Project"
-Cohesion: 0.15
-Nodes (24): create_project(), delete_project(), get_project(), list_projects(), get, post, Session, Create a new project container. (+16 more)
+Cohesion: 0.05
+Nodes (62): get_db(), Session, Provide a database session dependency for route handlers., create_project(), delete_project(), get_project(), list_projects(), get (+54 more)
 
 ### Community 5 - "Architecture"
 Cohesion: 0.25
@@ -176,9 +179,9 @@ Nodes (6): APIs & External Services, Authentication & Identity, CI/CD & Deployme
 Cohesion: 0.29
 Nodes (6): Codebase Structure, Directory Layout, Directory Purposes, Key File Locations, Naming Conventions, Where to Add New Code
 
-### Community 11 - "layout.tsx"
-Cohesion: 0.40
-Nodes (3): geistMono, geistSans, metadata
+### Community 11 - "ProjectGrid.tsx"
+Cohesion: 0.06
+Nodes (53): geistMono, geistSans, metadata, ProjectWorkspacePage(), CreateProjectModal(), CreateProjectModalProps, DeleteProjectModal(), DeleteProjectModalProps (+45 more)
 
 ### Community 12 - "Testing Patterns"
 Cohesion: 0.40
@@ -204,9 +207,13 @@ Nodes (3): Evaluation Dataset from User Corrections, Purpose, Seed Idea
 Cohesion: 0.50
 Nodes (3): Context, Setup FastAPI, LangGraph, and Groq in Backend, Tasks
 
-### Community 25 - "Communities (68 total, 7 thin omitted)"
-Cohesion: 0.04
-Nodes (53): Communities (68 total, 7 thin omitted), Community 0 - "User Stories", Community 10 - "Codebase Structure", Community 11 - "layout.tsx", Community 12 - "Testing Patterns", Community 13 - "LangGraph Workflow Specification", Community 14 - "frontend/README.md", Community 15 - "NexBrief Agent Architecture Decisions" (+45 more)
+### Community 22 - "Phase 7: Frontend API Client & Project Dashboard - Context"
+Cohesion: 0.11
+Nodes (17): Backend Specifications & Contracts, Canonical References, Dashboard Layout & Cards, Data Fetching & Refresh Strategy, Deferred Ideas, Established Patterns, Existing Code Insights, Frontend Architecture & UI Design Guidelines (+9 more)
+
+### Community 25 - "Communities (101 total, 8 thin omitted)"
+Cohesion: 0.03
+Nodes (80): Communities (101 total, 8 thin omitted), Community 0 - "User Stories", Community 10 - "Codebase Structure", Community 11 - "layout.tsx", Community 12 - "Testing Patterns", Community 13 - "LangGraph Workflow Specification", Community 14 - "frontend/README.md", Community 15 - "NexBrief Agent Architecture Decisions" (+72 more)
 
 ### Community 26 - "AGENTS.md"
 Cohesion: 0.08
@@ -236,8 +243,8 @@ Nodes (13): Architectural Patterns, Architecture Research, Component Responsibil
 Cohesion: 0.14
 Nodes (13): Add After Validation (v1.x), Anti-Features (Commonly Requested, Often Problematic), Dependency Notes, Differentiators (Competitive Advantage), Feature Dependencies, Feature Landscape, Feature Prioritization Matrix, Feature Research (+5 more)
 
-### Community 33 - "test_grounding.py"
-Cohesion: 0.15
+### Community 33 - "find_quote_spans"
+Cohesion: 0.13
 Nodes (23): calculate_line_numbers(), find_quote_spans(), Any, Trigger a single targeted re-prompt for a candidate fact whose quote failed…, Calculate 1-indexed (line_start, line_end) for a character span in text., Programmatically verify all candidate facts against the transcript text.…, Remove surrounding quotation marks and outer whitespace., Remove speaker label prefix like 'Client: ' or 'Sarah: ' if present. (+15 more)
 
 ### Community 34 - "NexBrief"
@@ -264,9 +271,9 @@ Nodes (10): Accumulated Context, Blockers/Concerns, Current Position, Decisions,
 Cohesion: 0.22
 Nodes (8): API Route Structure & CORS Policy, Automated Testing Strategy, Database Engine & Schema Lifecycle, Deferred Ideas, Folded Todos, Phase 1: Backend Foundation & Persistence - Discussion Log, the agent's Discretion, Transcript Ingestion & Storage Model
 
-### Community 40 - "client_fixture"
-Cohesion: 0.33
-Nodes (7): client_fixture(), fixture, Session, TestClient, Provide a clean isolated in-memory database session for each test., Provide a TestClient with the database session dependency overridden., session_fixture()
+### Community 40 - "Phase 7 — UI Design Contract"
+Cohesion: 0.18
+Nodes (10): Checker Sign-Off, Color, Component Inventory, Copywriting Contract, Design System, Phase 7 — UI Design Contract, Registry Safety, Spacing Scale (+2 more)
 
 ### Community 41 - "Phase 1 Plan 01-01 Summary: Backend Environment, Database & Schemas"
 Cohesion: 0.40
@@ -276,9 +283,9 @@ Nodes (4): Key Changes, Overview, Phase 1 Plan 01-01 Summary: Backend Environmen
 Cohesion: 0.40
 Nodes (4): Key Changes, Overview, Phase 1 Plan 01-02 Summary: Transcript Normalization, REST API Endpoints & Verification, Verification
 
-### Community 43 - "transcripts.py"
-Cohesion: 0.09
-Nodes (24): get_db(), Session, FastAPI dependency injection utilities., Provide a database session dependency for route handlers., Transcripts API router., BaseModel, Application Configuration., Settings (+16 more)
+### Community 43 - "database.py"
+Cohesion: 0.07
+Nodes (30): FastAPI dependency injection utilities., health_check(), get, Verify service availability., BaseModel, Application Configuration., Settings, get_session() (+22 more)
 
 ### Community 44 - "Phase 2: Extraction & Grounding Engine - Research"
 Cohesion: 0.10
@@ -293,8 +300,8 @@ Cohesion: 0.12
 Nodes (16): Canonical References, Contradiction Data Model & Grounding, Deferred Ideas, Established Patterns, Existing Code Insights, Folded Todos, Implementation Decisions, Integration Points (+8 more)
 
 ### Community 50 - "services/workflow.py"
-Cohesion: 0.15
-Nodes (20): get_checkpointer(), Any, Extract filesystem path from a sqlite URL (e.g., sqlite:///path -> path)., Yields active checkpointer, defaulting to SqliteSaver for settings.database_url., Executes the 6-node extraction, truth-grounding, and brief synthesis LangGraph…, _resolve_sqlite_path(), run_extraction_pipeline(), normalize_transcript_text() (+12 more)
+Cohesion: 0.20
+Nodes (14): get_checkpointer(), Any, Yields active checkpointer, defaulting to SqliteSaver for settings.database_url., normalize_transcript_text(), Normalizes discovery transcript text while strictly preserving: - Verbatim…, get_project_brief_details(), Any, Session (+6 more)
 
 ### Community 51 - "Graph Report - nex-brief  (2026-09-09)"
 Cohesion: 0.18
@@ -336,25 +343,25 @@ Nodes (4): Key Changes, Overview, Phase 2 Plan 02-01 Summary: Epistemic Schemas 
 Cohesion: 0.40
 Nodes (4): Key Changes, Overview, Phase 2 Plan 02-02 Summary: Verbatim Grounding Verifier & LangGraph Pipeline, Verification
 
-### Community 61 - "clear_mock_clarification_client"
-Cohesion: 0.50
-Nodes (4): clear_mock_clarification_client(), Clear the mock clarification client., clean_mock(), fixture
+### Community 61 - "Technical Analysis"
+Cohesion: 0.22
+Nodes (8): 1. Backend REST API Contracts, 2. Frontend Dependencies & Tooling, 3. Vercel React Best Practices Integration, 4. UI/UX Pro Max Design System & Tokens, 5. Plan Structure, Phase 7: Frontend API Client & Project Dashboard - Research, Technical Analysis, TypeScript Data Types
 
-### Community 68 - "llm.py"
-Cohesion: 0.06
-Nodes (85): clear_mock_critique_client(), clear_mock_extraction_client(), clear_mock_synthesis_client(), get_extraction_llm_with_fallback(), get_groq_llm(), get_structured_critique_client(), get_structured_extraction_client(), get_structured_synthesis_client() (+77 more)
+### Community 68 - "models/__init__.py"
+Cohesion: 0.08
+Nodes (57): get_structured_critique_client(), get_structured_synthesis_client(), Returns a client with structured output binding for RawBriefPayload., Returns a client with structured output binding for RawCritiquePayload., Set a mock client for brief synthesis., Set a mock client for critique audit., set_mock_critique_client(), set_mock_synthesis_client() (+49 more)
 
 ### Community 69 - "CorrectionLog"
-Cohesion: 0.14
-Nodes (20): export_evaluation_dataset(), list_corrections(), get, Session, Retrieves stored section-level correction records (EVAL-01)., Exports evaluation benchmark dataset formatted as JSON Lines (JSONL) (EVAL-02 /…, main(), Session (+12 more)
+Cohesion: 0.16
+Nodes (16): export_evaluation_dataset(), list_corrections(), get, Session, Retrieves stored section-level correction records (EVAL-01)., Exports evaluation benchmark dataset formatted as JSON Lines (JSONL) (EVAL-02 /…, CorrectionLog, SQLModel (+8 more)
 
-### Community 70 - "Transcript"
-Cohesion: 0.13
-Nodes (22): create_transcript(), get_transcript(), list_project_transcripts(), get, post, Session, Ingest and normalize a transcript for a given project., List all transcripts belonging to a project. (+14 more)
+### Community 70 - "Phase 7: Frontend API Client & Project Dashboard - Discussion Log"
+Cohesion: 0.25
+Nodes (7): Dashboard Layout & Cards, Data Fetching & Refresh Strategy, Deferred Ideas, Phase 7: Frontend API Client & Project Dashboard - Discussion Log, Project Creation & Management UX, the agent's Discretion, Visual Style & Theme
 
 ### Community 71 - "test_correction_eval.py"
-Cohesion: 0.22
-Nodes (17): ProjectBriefRecord, SQLModel, Persistent relational record for project briefs, critique reports, and human…, ProjectStatus, approve_project_brief(), Finalizes human approval of brief, optionally saving user edits (BRIEF-04)., client_fixture(), db_session_fixture() (+9 more)
+Cohesion: 0.30
+Nodes (14): ProjectStatus, approve_project_brief(), Finalizes human approval of brief, optionally saving user edits (BRIEF-04)., client_fixture(), db_session_fixture(), make_sample_brief_dict(), fixture, Path (+6 more)
 
 ### Community 72 - "api/workflow.py"
 Cohesion: 0.18
@@ -416,9 +423,9 @@ Nodes (6): 1. Synthesis node generates all 11 required sections grounded in conf
 Cohesion: 0.29
 Nodes (6): 1. Diff engine computes section-level modifications between draft and final brief (`EVAL-01`), 2. Structured diffs are persisted in `correction_log` table upon brief approval (`EVAL-01`), 3. CLI and API export logged corrections as JSONL benchmark datasets (`EVAL-02`), Phase 06: Correction Logging & Evaluation Datasets (Story 14) — Verification, Success Criteria Verification, Test Suite Results
 
-### Community 87 - "conftest.py"
-Cohesion: 0.50
-Nodes (3): listens_for, Enforce foreign keys in SQLite test engine., set_sqlite_pragma()
+### Community 87 - "Verification Evidence"
+Cohesion: 0.25
+Nodes (7): 1. TypeScript Strict Type-Checking, 2. ESLint Static Analysis, 3. Production Build Compilation, 4. Backend Regression Suite, Acceptance Criteria Checklist, Phase 7: Verification Report, Verification Evidence
 
 ### Community 88 - "Plan 04-01 Summary: Brief Synthesis & Critique Nodes"
 Cohesion: 0.50
@@ -440,28 +447,28 @@ Nodes (3): Key Changes, Overview, Plan 05-02 Summary: Clarification Resumption &
 Cohesion: 0.50
 Nodes (3): Key Changes, Overview, Plan 06-01 Summary: Correction Logging & Evaluation Datasets (Story 14)
 
-### Community 93 - "health_check"
-Cohesion: 0.67
-Nodes (3): health_check(), get, Verify service availability.
+### Community 93 - "ProjectBriefRecord"
+Cohesion: 0.47
+Nodes (3): ProjectBriefRecord, SQLModel, Persistent relational record for project briefs, critique reports, and human…
 
-### Community 94 - "set_sqlite_pragma"
-Cohesion: 0.67
-Nodes (3): listens_for, Enforce WAL mode and busy timeout for concurrent access., set_sqlite_pragma()
+### Community 94 - "run_export"
+Cohesion: 0.50
+Nodes (4): main(), Session, Programmatic entry point for evaluation dataset export. Returns the dataset…, run_export()
 
 ## Knowledge Gaps
-- **501 isolated node(s):** `backend`, `eslintConfig`, `nextConfig`, `name`, `version` (+496 more)
+- **586 isolated node(s):** `backend`, `eslintConfig`, `nextConfig`, `name`, `version` (+581 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `ExtractionState` connect `models/__init__.py` to `services/workflow.py`, `llm.py`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
-- **Why does `Project` connect `Project` to `models/__init__.py`, `llm.py`, `CorrectionLog`, `Transcript`, `test_correction_eval.py`, `transcripts.py`, `services/workflow.py`, `conftest.py`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **Why does `build_extraction_graph()` connect `models/__init__.py` to `services/workflow.py`, `llm.py`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Why does `Project` connect `Project` to `ExtractionState`, `models/__init__.py`, `CorrectionLog`, `test_correction_eval.py`, `database.py`, `services/workflow.py`, `ProjectBriefRecord`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **Why does `ExtractionState` connect `ExtractionState` to `services/workflow.py`, `database.py`, `models/__init__.py`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **Why does `Communities (101 total, 8 thin omitted)` connect `Communities (101 total, 8 thin omitted)` to `Graph Report - nex-brief  (2026-09-09)`?**
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Are the 25 inferred relationships involving `ExtractionState` (e.g. with `build_extraction_graph()` and `critique_brief_node()`) actually correct?**
   _`ExtractionState` has 25 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 26 inferred relationships involving `FactCategory` (e.g. with `verify_grounding()` and `test_synthesize_brief_generates_all_11_sections()`) actually correct?**
