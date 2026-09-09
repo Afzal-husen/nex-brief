@@ -117,6 +117,18 @@
 
 ---
 
+## Automated Testing Strategy
+
+| Option | Description | Selected |
+|--------|-------------|----------|
+| Pytest + HTTPX TestClient with in-memory SQLite fixture | Isolated, fast unit/integration testing | ✓ |
+| Manual API verification only | No automated test suite | |
+
+**User's choice:** Pytest + HTTPX TestClient with isolated in-memory test database fixture
+**Notes:** Explicitly requested to ensure test-driven verification of health, project CRUD, and transcript normalization.
+
+---
+
 ## Folded Todos
 
 - **`setup-fastapi-langgraph-backend.md`:** Folded into Phase 1 to install backend dependencies, setup SQLite/SQLModel engine and tables, and structure the FastAPI backend service.

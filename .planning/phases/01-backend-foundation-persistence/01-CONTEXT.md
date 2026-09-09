@@ -31,8 +31,16 @@ Establish the core FastAPI backend application service, SQLite database persiste
 - **D-11:** Responses serialize directly as Pydantic models (e.g. `ProjectRead`, `TranscriptRead`) without generic envelope wrappers. — **Reversibility:** costly — defines OpenAPI contract consumed by frontend client.
 - **D-12:** Error responses utilize standard FastAPI `HTTPException` with structured details (`{"detail": "...", "code": "NOT_FOUND"}`) and semantic HTTP status codes (400, 404, 422, 500). — **Reversibility:** reversible.
 
+### Automated Testing Strategy
+- **D-13:** Test suite implemented using `pytest` and `httpx` (`TestClient`). — **Reversibility:** reversible.
+- **D-14:** Tests execute against an isolated SQLite database fixture (in-memory `sqlite:///:memory:` via FastAPI dependency override), guaranteeing fast test runs without dirtying `backend/data/nexbrief.db`. — **Reversibility:** reversible.
+- **D-15:** Core test coverage includes:
+  1. Health check & database connectivity (`GET /api/v1/health`)
+  2. Project lifecycle (create, read, list, delete, and 404 error handling)
+  3. Transcript ingestion, text normalization (speaker markers intact, whitespace sanitized), and payload size limit validation
+
 ### Folded Todos
-- **Setup FastAPI, LangGraph, and Groq in Backend (`setup-fastapi-langgraph-backend.md`):** Folded into Phase 1 to install the full backend dependency footprint (`fastapi`, `uvicorn[standard]`, `sqlmodel`, `pydantic`, `python-dotenv`, `langchain`, `langgraph`, `langchain-groq`, `pytest`, `httpx`), setup the initial SQLModel tables, and establish the FastAPI project structure.
+- **Setup FastAPI, LangGraph, and Groq in Backend (`setup-fastapi-langgraph-backend.md`):** Folded into Phase 1 to install the full backend dependency footprint (`fastapi`, `uvicorn[standard]`, `sqlmodel`, `pydantic`, `python-dotenv`, `langchain`, `langgraph`, `langchain-groq`, `pytest`, `httpx`), setup the initial SQLModel tables, establish the FastAPI project structure, and write automated tests.
 
 </decisions>
 

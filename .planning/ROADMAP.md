@@ -32,11 +32,12 @@ NexBrief transforms client discovery call transcripts into clear, structured, an
   2. SQLite database initializes with WAL mode and `Project` / `Transcript` tables.
   3. Client projects can be created, read, listed, and deleted via REST API.
   4. Transcripts can be uploaded or pasted, normalized, and persisted to SQLite.
+  5. Automated test suite (pytest + HTTPX) passes cleanly covering health, project CRUD, and transcript normalization.
 **Plans**: 2 plans
 
 Plans:
 - [ ] 01-01: Setup pyproject dependencies, SQLite engine, SQLModel tables, and FastAPI app factory.
-- [ ] 01-02: Implement project and transcript API routers with normalization and tests.
+- [ ] 01-02: Implement project and transcript API routers with normalization and automated pytest suite.
 
 ### Phase 2: Extraction & Grounding Engine
 **Goal**: Build the LangGraph knowledge extraction node powered by Groq and enforce strict programmatic verbatim quote anchoring.
