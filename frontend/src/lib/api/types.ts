@@ -12,6 +12,7 @@ export type ProjectStatus =
 
 export interface Project {
   id: string;
+  name?: string;
   title: string;
   description: string | null;
   status: ProjectStatus;
@@ -20,7 +21,8 @@ export interface Project {
 }
 
 export interface ProjectCreatePayload {
-  title: string;
+  name?: string;
+  title?: string;
   description?: string | null;
 }
 

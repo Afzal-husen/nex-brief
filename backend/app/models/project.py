@@ -1,7 +1,8 @@
 import uuid
 from datetime import datetime, timezone
-from typing import Optional, List, TYPE_CHECKING
+from typing import Optional, List, Any, TYPE_CHECKING
 from sqlmodel import SQLModel, Field, Relationship
+from pydantic import model_validator
 
 if TYPE_CHECKING:
     from app.models.transcript import Transcript
@@ -54,17 +55,45 @@ class Project(ProjectBase, table=True):
 
 
 class ProjectCreate(SQLModel):
-    name: str = Field(min_length=1, max_length=255)
+    name: Optional[str] = Field(default=None, max_length=255)
+    title: Optional[str] = Field(default=None, max_length=255)
     description: Optional[str] = Field(default=None, max_length=2000)
+
+    @model_validator(mode="before")
+    @classmethod
+    def validate_name_or_title(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            val = data.get("name") or data.get("title")
+            if not val:
+                raise ValueError("Project name or title is required")
+            data["name"] = val
+            data["title"] = val
+        return data
 
 
 class ProjectRead(ProjectBase):
     id: str
     created_at: str
     updated_at: str
+    title: Optional[str] = None
+
+    @model_validator(mode="after")
+    def populate_title(self) -> "ProjectRead":
+        if not self.title:
+            self.title = self.name
+        return self
 
 
 class ProjectUpdate(SQLModel):
     name: Optional[str] = Field(default=None, min_length=1, max_length=255)
+    title: Optional[str] = Field(default=None, max_length=255)
     description: Optional[str] = Field(default=None, max_length=2000)
     status: Optional[str] = Field(default=None)
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_title(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if "title" in data and "name" not in data:
+                data["name"] = data["title"]
+        return data

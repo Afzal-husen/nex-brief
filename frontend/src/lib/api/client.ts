@@ -96,9 +96,14 @@ export const apiClient = {
       return request<Project>(`/projects/${id}`);
     },
     create: async (payload: ProjectCreatePayload): Promise<Project> => {
+      const titleOrName = payload.title || payload.name || '';
       return request<Project>('/projects', {
         method: 'POST',
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          name: titleOrName,
+          title: titleOrName,
+          description: payload.description,
+        }),
       });
     },
     delete: async (id: string): Promise<DeleteProjectResponse> => {
