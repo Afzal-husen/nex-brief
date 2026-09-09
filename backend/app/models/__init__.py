@@ -11,6 +11,19 @@ from backend.app.models.transcript import (
     TranscriptCreate,
     TranscriptRead,
 )
+from backend.app.models.extraction import (
+    FactCategory,
+    QuoteSpan,
+    ConfirmedFact,
+    InferredPoint,
+    UnknownGap,
+    UnverifiedCandidate,
+    RawFactCandidate,
+    RawInferenceCandidate,
+    RawUnknownCandidate,
+    RawExtractionPayload,
+    ExtractionResult,
+)
 
 __all__ = [
     "Project",
@@ -22,4 +35,15 @@ __all__ = [
     "TranscriptBase",
     "TranscriptCreate",
     "TranscriptRead",
+    "FactCategory",
+    "QuoteSpan",
+    "ConfirmedFact",
+    "InferredPoint",
+    "UnknownGap",
+    "UnverifiedCandidate",
+    "RawFactCandidate",
+    "RawInferenceCandidate",
+    "RawUnknownCandidate",
+    "RawExtractionPayload",
+    "ExtractionResult",
 ]
