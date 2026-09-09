@@ -1,11 +1,11 @@
 # Graph Report - nex-brief  (2026-09-09)
 
 ## Corpus Check
-- 24 files · ~4,942 words
+- 27 files · ~30,607 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 172 nodes · 149 edges · 25 communities (21 shown, 4 thin omitted)
+- 202 nodes · 178 edges · 27 communities (23 shown, 4 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
@@ -37,18 +37,20 @@
 - next.config.ts
 - postcss.config.mjs
 - backend
+- Communities (25 total, 4 thin omitted)
+- Graph Report - nex-brief  (2026-09-09)
 
 ## God Nodes (most connected - your core abstractions)
-1. `compilerOptions` - 16 edges
-2. `User Stories` - 15 edges
-3. `include` - 7 edges
-4. `Architecture` - 7 edges
-5. `Codebase Concerns` - 7 edges
-6. `Technology Stack` - 7 edges
-7. `Coding Conventions` - 6 edges
-8. `External Integrations` - 6 edges
-9. `Codebase Structure` - 6 edges
-10. `scripts` - 5 edges
+1. `Communities (25 total, 4 thin omitted)` - 19 edges
+2. `compilerOptions` - 16 edges
+3. `User Stories` - 15 edges
+4. `Graph Report - nex-brief  (2026-09-09)` - 11 edges
+5. `include` - 7 edges
+6. `Architecture` - 7 edges
+7. `Codebase Concerns` - 7 edges
+8. `Technology Stack` - 7 edges
+9. `Coding Conventions` - 6 edges
+10. `External Integrations` - 6 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -56,7 +58,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (25 total, 4 thin omitted)
+## Communities (27 total, 4 thin omitted)
 
 ### Community 0 - "User Stories"
 Cohesion: 0.10
@@ -130,8 +132,16 @@ Nodes (3): Evaluation Dataset from User Corrections, Purpose, Seed Idea
 Cohesion: 0.50
 Nodes (3): Context, Setup FastAPI, LangGraph, and Groq in Backend, Tasks
 
+### Community 25 - "Communities (25 total, 4 thin omitted)"
+Cohesion: 0.11
+Nodes (19): Communities (25 total, 4 thin omitted), Community 0 - "User Stories", Community 10 - "Codebase Structure", Community 11 - "layout.tsx", Community 12 - "Testing Patterns", Community 13 - "LangGraph Workflow Specification", Community 14 - "frontend/README.md", Community 15 - "NexBrief Agent Architecture Decisions" (+11 more)
+
+### Community 26 - "Graph Report - nex-brief  (2026-09-09)"
+Cohesion: 0.18
+Nodes (10): Community Hubs (Navigation), Corpus Check, God Nodes (most connected - your core abstractions), Graph Freshness, Graph Report - nex-brief  (2026-09-09), Import Cycles, Knowledge Gaps, Suggested Questions (+2 more)
+
 ## Knowledge Gaps
-- **115 isolated node(s):** `backend`, `eslintConfig`, `nextConfig`, `name`, `version` (+110 more)
+- **142 isolated node(s):** `backend`, `eslintConfig`, `nextConfig`, `name`, `version` (+137 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -139,16 +149,16 @@ Nodes (3): Context, Setup FastAPI, LangGraph, and Groq in Backend, Tasks
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `devDependencies` connect `devDependencies` to `package.json`?**
-  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
+- **Why does `Communities (25 total, 4 thin omitted)` connect `Communities (25 total, 4 thin omitted)` to `Graph Report - nex-brief  (2026-09-09)`?**
+  _High betweenness centrality (0.017) - this node is a cross-community bridge._
 - **Why does `compilerOptions` connect `compilerOptions` to `include`?**
-  _High betweenness centrality (0.022) - this node is a cross-community bridge._
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
 - **What connects `backend`, `eslintConfig`, `nextConfig` to the rest of the system?**
-  _115 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _142 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `User Stories` be split into smaller, more focused modules?**
   _Cohesion score 0.1 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
 - **Should `compilerOptions` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
-- **Should `package.json` be split into smaller, more focused modules?**
-  _Cohesion score 0.125 - nodes in this community are weakly interconnected._
