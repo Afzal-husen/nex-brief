@@ -1,12 +1,14 @@
 import type {
   AnalyzeResponse,
   ApiErrorResponse,
+  ClarifyResponse,
   DeleteProjectResponse,
   HealthResponse,
   Project,
   ProjectCreatePayload,
   Transcript,
   TranscriptCreate,
+  UserClarification,
 } from './types';
 
 export class ApiError extends Error {
@@ -138,6 +140,15 @@ export const apiClient = {
     },
     getAnalysis: async (projectId: string): Promise<AnalyzeResponse> => {
       return request<AnalyzeResponse>(`/projects/${projectId}/analysis`);
+    },
+    clarify: async (
+      projectId: string,
+      clarifications: UserClarification[]
+    ): Promise<ClarifyResponse> => {
+      return request<ClarifyResponse>(`/projects/${projectId}/clarify`, {
+        method: 'POST',
+        body: JSON.stringify({ clarifications }),
+      });
     },
   },
   health: {

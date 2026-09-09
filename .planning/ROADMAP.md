@@ -19,7 +19,7 @@ NexBrief transforms client discovery call transcripts into clear, structured, an
 - [ ] **Phase 6: Correction Logging & Evaluation Datasets (Story 14)** - Structured diff tracking between draft and approved briefs with JSONL evaluation dataset export.
 - [ ] **Phase 7: Frontend API Client & Project Dashboard** - Next.js typed API client, project management dashboard, and navigation skeleton.
 - [x] **Phase 8: Transcript Ingestion & Fact Grounding UI** - Transcript paste/upload interface, epistemic breakdown cards, and click-to-highlight quote verification.
-- [ ] **Phase 9: Interactive Gap Clarification UI** - Review interface for resolving contradictions, answering unknowns, and inspecting follow-up questions.
+- [x] **Phase 9: Interactive Gap Clarification UI** - Review interface for resolving contradictions, answering unknowns, and inspecting follow-up questions.
 - [ ] **Phase 10: Brief Markdown Editor & Final Approval UI** - 11-section brief viewer with critique warnings, rich/Markdown editor, and approval sign-off.
 
 ## Phase Details
@@ -189,7 +189,7 @@ Plans:
 
 Plans:
 
-- [ ] 09-01: Build gap resolution form, contradiction resolver, and resume trigger.
+- [x] 09-01: Build gap resolution form, contradiction resolver, and resume trigger.
 
 ### Phase 10: Brief Markdown Editor & Final Approval UI
 
@@ -224,5 +224,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 6. Correction Logging & Evaluation Datasets | 1/1 | Complete | 2026-09-09 |
 | 7. Frontend API Client & Project Dashboard | 2/2 | Complete | 2026-09-09 |
 | 8. Transcript Ingestion & Fact Grounding UI | 2/2 | Complete | 2026-09-09 |
-| 9. Interactive Gap Clarification UI | 0/1 | Not started | - |
+| 9. Interactive Gap Clarification UI | 1/1 | Complete | 2026-09-09 |
 | 10. Brief Markdown Editor & Final Approval UI | 0/2 | Not started | - |

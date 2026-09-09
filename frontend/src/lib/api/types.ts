@@ -134,3 +134,21 @@ export interface AnalyzeResponse {
   unknown_gaps: UnknownGap[];
   clarification_questions: ClarificationQuestion[];
 }
+
+export interface UserClarification {
+  id?: string;
+  question_id: string;
+  resolved_text: string;
+  resolved_by?: string;
+}
+
+export interface ClarifyRequest {
+  clarifications: UserClarification[];
+}
+
+export interface ClarifyResponse {
+  project_id: string;
+  status: string;
+  draft_brief?: unknown;
+  critique_report?: unknown;
+}

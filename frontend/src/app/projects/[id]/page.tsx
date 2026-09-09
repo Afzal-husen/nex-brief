@@ -314,7 +314,6 @@ export default function ProjectWorkspacePage() {
           inferredCount={analysis?.inferred_points?.length || 0}
           contradictionCount={analysis?.contradictions?.length || 0}
           unknownCount={analysis?.unknown_gaps?.length || 0}
-          status={project.status}
           projectId={project.id}
         />
       )}

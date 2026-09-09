@@ -1,16 +1,14 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { ArrowRight, CheckCircle2, AlertCircle, Sparkles } from 'lucide-react';
-import { ProjectStatus } from '@/lib/api/types';
-import { useToast } from '@/components/ui/Toast';
 
 interface ClarificationFooterProps {
   confirmedCount: number;
   inferredCount: number;
   contradictionCount: number;
   unknownCount: number;
-  status: ProjectStatus;
   projectId: string;
 }
 
@@ -19,17 +17,13 @@ export function ClarificationFooter({
   inferredCount,
   contradictionCount,
   unknownCount,
-  status,
   projectId,
 }: ClarificationFooterProps) {
-  const { info } = useToast();
+  const router = useRouter();
   const clarificationItemsCount = contradictionCount + unknownCount;
 
   const handleProceed = () => {
-    info(
-      'Phase 9 Ready',
-      `Interactive clarification flow for ${clarificationItemsCount} items in project ${projectId} (status: ${status}) will be handled in Phase 9.`
-    );
+    router.push(`/projects/${projectId}/clarify`);
   };
 
   return (
