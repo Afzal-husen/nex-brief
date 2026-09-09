@@ -1,9 +1,12 @@
-"""Shared test fixtures for backend pytest suite."""
+import os
 import pytest
 from typing import Generator
 from fastapi.testclient import TestClient
 from sqlalchemy.pool import StaticPool
 from sqlmodel import Session, SQLModel, create_engine
+
+# Ensure default GROQ_API_KEY is present for offline unit tests
+os.environ.setdefault("GROQ_API_KEY", "gsk_dummy_key_for_testing")
 
 from sqlalchemy import event
 
