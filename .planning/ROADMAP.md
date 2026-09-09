@@ -153,8 +153,8 @@ Plans:
 
 Plans:
 
-- [ ] 07-01: Setup typed API client and backend connection configuration.
-- [ ] 07-02: Build project dashboard, creation modal, and project layout.
+- [x] 07-01: Setup typed API client and backend connection configuration.
+- [x] 07-02: Build project dashboard, creation modal, and project layout.
 
 ### Phase 8: Transcript Ingestion & Fact Grounding UI
 
@@ -219,10 +219,10 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 1. Backend Foundation & Persistence | 2/2 | Complete | 2026-09-09 |
 | 2. Extraction & Grounding Engine | 2/2 | Complete | 2026-09-09 |
 | 3. Contradiction Detection & Follow-up Questions | 2/2 | Complete | 2026-09-09 |
-| 4. Brief Synthesis, Critique & Durable Checkpointing | 0/2 | Not started | - |
-| 5. Workflow REST API & Human-in-the-Loop Endpoints | 0/2 | Not started | - |
-| 6. Correction Logging & Evaluation Datasets | 0/1 | Not started | - |
-| 7. Frontend API Client & Project Dashboard | 0/2 | Not started | - |
+| 4. Brief Synthesis, Critique & Durable Checkpointing | 2/2 | Complete | 2026-09-09 |
+| 5. Workflow REST API & Human-in-the-Loop Endpoints | 2/2 | Complete | 2026-09-09 |
+| 6. Correction Logging & Evaluation Datasets | 1/1 | Complete | 2026-09-09 |
+| 7. Frontend API Client & Project Dashboard | 2/2 | Complete | 2026-09-09 |
 | 8. Transcript Ingestion & Fact Grounding UI | 0/2 | Not started | - |
 | 9. Interactive Gap Clarification UI | 0/1 | Not started | - |
 | 10. Brief Markdown Editor & Final Approval UI | 0/2 | Not started | - |

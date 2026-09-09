@@ -45,7 +45,7 @@
 
 ### Frontend Experience
 
-- [ ] **UI-01**: User can view project dashboard, manage projects, and track status.
+- [x] **UI-01**: User can view project dashboard, manage projects, and track status.
 - [ ] **UI-02**: User can upload or paste transcript and view formatted text.
 - [ ] **UI-03**: User can view extracted facts, inferences, unknowns, and click a fact to highlight its quote in the transcript.
 - [ ] **UI-04**: User can clarify unknowns and resolve contradictions in a dedicated review interface.
@@ -97,7 +97,7 @@
 | BRIEF-04 | Phase 5 | Complete |
 | EVAL-01 | Phase 6 | Complete |
 | EVAL-02 | Phase 6 | Complete |
-| UI-01 | Phase 7 | Pending |
+| UI-01 | Phase 7 | Complete |
 | UI-02 | Phase 8 | Pending |
 | UI-03 | Phase 8 | Pending |
 | UI-04 | Phase 9 | Pending |
