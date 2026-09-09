@@ -23,6 +23,13 @@ from backend.app.models.extraction import (
     RawUnknownCandidate,
     RawExtractionPayload,
     ExtractionResult,
+    Contradiction,
+    RawContradictionCandidate,
+    UnverifiedContradiction,
+    RawContradictionPayload,
+    ClarificationQuestion,
+    RawQuestionCandidate,
+    RawClarificationPayload,
 )
 
 __all__ = [
@@ -46,4 +53,11 @@ __all__ = [
     "RawUnknownCandidate",
     "RawExtractionPayload",
     "ExtractionResult",
+    "Contradiction",
+    "RawContradictionCandidate",
+    "UnverifiedContradiction",
+    "RawContradictionPayload",
+    "ClarificationQuestion",
+    "RawQuestionCandidate",
+    "RawClarificationPayload",
 ]

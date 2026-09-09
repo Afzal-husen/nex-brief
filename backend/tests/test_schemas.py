@@ -122,3 +122,60 @@ def test_raw_extraction_payload_and_result():
     assert result.inferred_points == []
     assert result.unknown_gaps == []
     assert result.unverified_candidates == []
+    assert result.contradictions == []
+    assert result.unverified_contradictions == []
+    assert result.clarification_questions == []
+
+
+def test_contradiction_schema():
+    from backend.app.models.extraction import Contradiction, UnverifiedContradiction, RawContradictionCandidate
+
+    contradiction = Contradiction(
+        category=FactCategory.TIMELINE,
+        claim_a="Launch deadline is end of Q2",
+        quote_a="We must launch before June 30th",
+        spans_a=[QuoteSpan(start_char=10, end_char=40, line_start=2, line_end=2)],
+        claim_b="Team cannot start until August",
+        quote_b="Nobody is free to work on this until August",
+        spans_b=[QuoteSpan(start_char=100, end_char=143, line_start=10, line_end=10)],
+        conflict_rationale="A June launch is impossible if development cannot begin until August.",
+        severity="direct_conflict",
+    )
+    assert contradiction.id is not None
+    assert str(uuid.UUID(contradiction.id)) == contradiction.id
+    assert contradiction.severity == "direct_conflict"
+    assert len(contradiction.spans_a) == 1
+    assert len(contradiction.spans_b) == 1
+
+    candidate = RawContradictionCandidate(
+        claim_a="Budget is $20k",
+        quote_a="Our budget is 20k",
+        claim_b="Budget is $50k",
+        quote_b="Our budget is 50k",
+        conflict_rationale="Conflicting budget amounts",
+        severity="direct_conflict",
+        category=FactCategory.BUDGET,
+    )
+    unverified = UnverifiedContradiction(
+        candidate=candidate,
+        error_reason="quote_a not found in transcript",
+    )
+    assert unverified.candidate.claim_a == "Budget is $20k"
+    assert "not found" in unverified.error_reason
+
+
+def test_clarification_question_schema():
+    from backend.app.models.extraction import ClarificationQuestion
+
+    question = ClarificationQuestion(
+        priority=1,
+        target_type="contradiction",
+        target_id="test-id-123",
+        question="Can you confirm whether the target launch is June or August?",
+        rationale="Blocks project scheduling and milestone definitions.",
+        suggested_options=["June launch with external contractors", "August start with Q4 launch"],
+    )
+    assert question.priority == 1
+    assert question.target_type == "contradiction"
+    assert len(question.suggested_options) == 2
+    assert str(uuid.UUID(question.id)) == question.id
