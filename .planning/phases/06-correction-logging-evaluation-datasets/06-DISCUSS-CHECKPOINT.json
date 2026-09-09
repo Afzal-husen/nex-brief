@@ -1,0 +1,20 @@
+{
+  "phase": 6,
+  "slug": "06-correction-logging-evaluation-datasets",
+  "status": "completed",
+  "timestamp": "2026-09-09T10:10:00.000Z",
+  "questions_resolved": [
+    {
+      "question": "When a brief is approved, how would you like section corrections to be recorded in the correction_log table?",
+      "answer": "Log all 11 sections per approval with a has_changed boolean flag (provides complete baseline data for unaltered sections as well as edits)"
+    },
+    {
+      "question": "What context should each record in the exported JSONL evaluation dataset include alongside the initial draft and human correction?",
+      "answer": "Include the full normalized transcript and confirmed fact quotes for complete prompt context"
+    },
+    {
+      "question": "How should developers or evaluation pipelines export the JSONL benchmark datasets?",
+      "answer": "Both REST API endpoints (GET /api/v1/eval/export and GET /api/v1/eval/corrections) and a standalone CLI command (python -m backend.app.eval.export)"
+    }
+  ]
+}
