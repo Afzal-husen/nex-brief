@@ -6,6 +6,7 @@ from sqlmodel import SQLModel, Field, Relationship
 if TYPE_CHECKING:
     from backend.app.models.transcript import Transcript
     from backend.app.models.brief_record import ProjectBriefRecord
+    from backend.app.models.correction import CorrectionLog
 
 
 def utc_now() -> str:
@@ -45,6 +46,10 @@ class Project(ProjectBase, table=True):
     brief_record: Optional["ProjectBriefRecord"] = Relationship(
         back_populates="project",
         sa_relationship_kwargs={"cascade": "all, delete-orphan", "uselist": False},
+    )
+    correction_logs: List["CorrectionLog"] = Relationship(
+        back_populates="project",
+        sa_relationship_kwargs={"cascade": "all, delete-orphan"},
     )
 
 

@@ -136,7 +136,7 @@ Plans:
 
 Plans:
 
-- [ ] 06-01: Implement diff calculation, `CorrectionLog` persistence, and JSONL export endpoint.
+- [x] 06-01: Implement diff calculation, `CorrectionLog` persistence, and JSONL export endpoint.
 
 ### Phase 7: Frontend API Client & Project Dashboard
 

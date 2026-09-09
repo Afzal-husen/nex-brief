@@ -46,6 +46,7 @@ from backend.app.models.brief import (
     RawCritiquePayload,
 )
 from backend.app.models.brief_record import ProjectBriefRecord
+from backend.app.models.correction import CorrectionLog
 
 __all__ = [
     "Project",
@@ -53,6 +54,7 @@ __all__ = [
     "ProjectCreate",
     "ProjectRead",
     "ProjectUpdate",
+    "CorrectionLog",
     "Transcript",
     "TranscriptBase",
     "TranscriptCreate",

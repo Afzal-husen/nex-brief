@@ -40,8 +40,8 @@
 
 ### Evaluation & Learning (Story 14)
 
-- [ ] **EVAL-01**: System computes and records structured diffs between the draft brief and user-approved brief in `correction_log` table.
-- [ ] **EVAL-02**: User can export correction logs as JSONL datasets for prompt evaluation and regression benchmarking.
+- [x] **EVAL-01**: System computes and records structured diffs between the draft brief and user-approved brief in `correction_log` table.
+- [x] **EVAL-02**: User can export correction logs as JSONL datasets for prompt evaluation and regression benchmarking.
 
 ### Frontend Experience
 
@@ -95,8 +95,8 @@
 | BRIEF-02 | Phase 4 | Complete |
 | BRIEF-03 | Phase 5 | Complete |
 | BRIEF-04 | Phase 5 | Complete |
-| EVAL-01 | Phase 6 | Pending |
-| EVAL-02 | Phase 6 | Pending |
+| EVAL-01 | Phase 6 | Complete |
+| EVAL-02 | Phase 6 | Complete |
 | UI-01 | Phase 7 | Pending |
 | UI-02 | Phase 8 | Pending |
 | UI-03 | Phase 8 | Pending |

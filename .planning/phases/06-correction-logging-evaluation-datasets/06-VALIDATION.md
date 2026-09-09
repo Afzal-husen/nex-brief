@@ -1,9 +1,9 @@
 ---
 phase: "06"
 slug: "correction-logging-evaluation-datasets"
-status: draft
+status: validated
 nyquist_compliant: true
-wave_0_complete: false
+wave_0_complete: true
 created: "2026-09-09"
 ---
 
@@ -38,10 +38,10 @@ created: "2026-09-09"
 
 | Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| 06-01-01 | 01 | 1 | EVAL-01 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_correction_eval.py -k test_compute_section_diffs` | ❌ W0 | ⬜ pending |
-| 06-01-02 | 01 | 1 | EVAL-01 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_correction_eval.py -k test_approval_creates_correction_logs` | ❌ W0 | ⬜ pending |
-| 06-01-03 | 01 | 2 | EVAL-02 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_correction_eval.py -k test_eval_api_endpoints` | ❌ W0 | ⬜ pending |
-| 06-01-04 | 01 | 2 | EVAL-02 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_correction_eval.py -k test_cli_export` | ❌ W0 | ⬜ pending |
+| 06-01-01 | 01 | 1 | EVAL-01 | — | N/A | unit | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_correction_eval.py -k test_compute_section_diffs` | ✅ | ✅ green |
+| 06-01-02 | 01 | 1 | EVAL-01 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_correction_eval.py -k test_approval_creates_correction_logs` | ✅ | ✅ green |
+| 06-01-03 | 01 | 2 | EVAL-02 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_correction_eval.py -k test_eval_api_endpoints` | ✅ | ✅ green |
+| 06-01-04 | 01 | 2 | EVAL-02 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_correction_eval.py -k test_cli_export` | ✅ | ✅ green |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -49,7 +49,7 @@ created: "2026-09-09"
 
 ## Wave 0 Requirements
 
-- [ ] `backend/tests/test_correction_eval.py` — Test suite covering diff engine, approval hooks, API endpoints, and CLI export
+- [x] `backend/tests/test_correction_eval.py` — Test suite covering diff engine, approval hooks, API endpoints, and CLI export
 
 ---
 

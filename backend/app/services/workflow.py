@@ -12,6 +12,7 @@ from backend.app.models.brief import (
     UserClarification,
 )
 from backend.app.models.brief_record import ProjectBriefRecord
+from backend.app.models.correction import CorrectionLog
 from backend.app.models.extraction import (
     ClarificationQuestion,
     ConfirmedFact,
@@ -21,6 +22,7 @@ from backend.app.models.extraction import (
 )
 from backend.app.models.project import Project, ProjectStatus
 from backend.app.models.transcript import Transcript
+from backend.app.services.diff_engine import compute_section_diffs
 from backend.app.services.extraction import get_checkpointer
 from backend.app.services.transcript import normalize_transcript_text
 
@@ -284,15 +286,41 @@ def approve_project_brief(
         )
 
     approval_time = utc_now()
+    draft_dict = json.loads(record.draft_brief_json)
     if edited_brief:
+        approved_dict = edited_brief
         record.approved_brief_json = json.dumps(edited_brief)
     else:
+        approved_dict = draft_dict
         record.approved_brief_json = record.draft_brief_json
 
     record.status = "approved"
     record.approved_at = approval_time
     record.updated_at = approval_time
     session.add(record)
+
+    # Compute and persist section-level diffs (EVAL-01 / Story 14)
+    diff_records = compute_section_diffs(draft_dict, approved_dict)
+
+    # Replace any prior correction logs for this project
+    stmt_old_logs = select(CorrectionLog).where(CorrectionLog.project_id == project_id)
+    old_logs = session.exec(stmt_old_logs).all()
+    for old_log in old_logs:
+        session.delete(old_log)
+
+    for diff_item in diff_records:
+        corr_log = CorrectionLog(
+            project_id=project_id,
+            section_key=diff_item["section_key"],
+            draft_content=diff_item["draft_content"],
+            approved_content=diff_item["approved_content"],
+            has_changed=diff_item["has_changed"],
+            diff_unified=diff_item["diff_unified"],
+            character_delta=diff_item["character_delta"],
+            similarity_ratio=diff_item["similarity_ratio"],
+            created_at=approval_time,
+        )
+        session.add(corr_log)
 
     project.status = ProjectStatus.APPROVED
     project.updated_at = approval_time

@@ -6,6 +6,7 @@ from backend.app.api.health import router as health_router
 from backend.app.api.projects import router as projects_router
 from backend.app.api.transcripts import router as transcripts_router
 from backend.app.api.workflow import router as workflow_router
+from backend.app.api.eval import router as eval_router
 from backend.app.core.config import settings
 from backend.app.core.database import init_db
 
@@ -37,3 +38,4 @@ app.include_router(health_router, prefix=settings.API_V1_STR)
 app.include_router(projects_router, prefix=settings.API_V1_STR)
 app.include_router(transcripts_router, prefix=settings.API_V1_STR)
 app.include_router(workflow_router, prefix=settings.API_V1_STR)
+app.include_router(eval_router, prefix=f"{settings.API_V1_STR}/eval", tags=["eval"])
