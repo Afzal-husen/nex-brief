@@ -1,17 +1,17 @@
 ---
 gsd_state_version: "1.0"
-current_phase: 9
-current_phase_name: Interactive Gap Clarification UI
-status: complete
-stopped_at: Phase 9 execution complete
-last_updated: "2026-09-09T13:20:00.000Z"
+current_phase: 10
+current_phase_name: Brief Markdown Editor & Final Approval UI
+status: ready_to_plan
+stopped_at: Phase 10 context gathered
+last_updated: "2026-09-09T13:45:00.000Z"
 last_activity: 2026-09-09
-last_activity_desc: Phase 9 completed with interactive contradiction resolver cards, gap questionnaire, context drawer, and Next.js /clarify route build
+last_activity_desc: Phase 10 context gathered covering /brief route, hybrid section cards, dual critique display, and approval modal
 state_head: 3e6e107
 progress:
   total_phases: 10
   completed_phases: 9
-  total_plans: 16
+  total_plans: 18
   completed_plans: 16
   percent: 90
 ---
@@ -23,14 +23,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-09-09)
 
 **Core value:** Turn unstructured discovery transcripts into verifiable, grounded project briefs where every fact is anchored to client statements, inferences are transparently labeled, and the user retains complete editorial authority.
-**Current focus:** Phase 9: Interactive Gap Clarification UI — COMPLETED
+**Current focus:** Phase 10: Brief Markdown Editor & Final Approval UI — Ready for planning
 
 ## Current Position
 
-Phase: 9 (Interactive Gap Clarification UI) — COMPLETE
-Plan: 1 of 1 completed
-Status: Phase 9 completed
-Last activity: 2026-09-09 — Phase 9 completed (interactive contradiction resolution cards, suggested option chips, transcript context drawer, /projects/[id]/clarify route, 63 backend tests passing, Next.js build passed)
+Phase: 10 (Brief Markdown Editor & Final Approval UI) — Context gathered
+Plan: 0 of 2 completed
+Status: Ready for planning
+Last activity: 2026-09-09 — Phase 10 context gathered (dedicated /projects/[id]/brief route, hybrid section markdown cards, dual critique score/inline audit, review & approve modal with diff & export)
 
 Progress: [█████████░] 90%
 
