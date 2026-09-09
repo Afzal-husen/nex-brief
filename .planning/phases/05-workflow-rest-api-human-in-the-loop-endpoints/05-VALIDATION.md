@@ -1,9 +1,9 @@
 ---
 phase: "05"
 slug: "workflow-rest-api-human-in-the-loop-endpoints"
-status: draft
+status: validated
 nyquist_compliant: true
-wave_0_complete: false
+wave_0_complete: true
 created: "2026-09-09"
 ---
 
@@ -38,10 +38,10 @@ created: "2026-09-09"
 
 | Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| 05-01-01 | 01 | 1 | CLARIFY-02 | — | N/A | unit | `backend/.venv/Scripts/python.exe -c "from backend.app.models.brief_record import ProjectBriefRecord; print('Model loaded')"` | ❌ W0 | ⬜ pending |
-| 05-01-02 | 01 | 1 | CLARIFY-02 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_workflow_api.py -k test_analyze_interrupt` | ❌ W0 | ⬜ pending |
-| 05-02-01 | 02 | 2 | CLARIFY-03 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_workflow_api.py -k test_clarify_resume` | ❌ W0 | ⬜ pending |
-| 05-02-02 | 02 | 2 | BRIEF-03, BRIEF-04 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_workflow_api.py -k test_brief_inspect_and_approve` | ❌ W0 | ⬜ pending |
+| 05-01-01 | 01 | 1 | CLARIFY-02 | — | N/A | unit | `backend/.venv/Scripts/python.exe -c "from backend.app.models.brief_record import ProjectBriefRecord; print('Model loaded')"` | ✅ | ✅ green |
+| 05-01-02 | 01 | 1 | CLARIFY-02 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_workflow_api.py -k test_analyze_interrupt` | ✅ | ✅ green |
+| 05-02-01 | 02 | 2 | CLARIFY-03 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_workflow_api.py -k test_clarify_resume` | ✅ | ✅ green |
+| 05-02-02 | 02 | 2 | BRIEF-03, BRIEF-04 | — | N/A | integration | `backend/.venv/Scripts/python.exe -m pytest backend/tests/test_workflow_api.py -k test_brief_inspect_and_approve` | ✅ | ✅ green |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -49,7 +49,7 @@ created: "2026-09-09"
 
 ## Wave 0 Requirements
 
-- [ ] `backend/tests/test_workflow_api.py` — API integration test suite covering `/analyze`, `/clarify`, `/brief`, and `/approve`
+- [x] `backend/tests/test_workflow_api.py` — API integration test suite covering `/analyze`, `/clarify`, `/brief`, and `/approve`
 
 ---
 

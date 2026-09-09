@@ -7,15 +7,15 @@
 
 ### Data Model & Persistence (Backend Core)
 
-- [ ] **DATA-01**: System initializes SQLite database via SQLModel with connection pooling and WAL mode.
-- [ ] **DATA-02**: User can manage projects (create, read, list, delete) stored in `project` table.
-- [ ] **DATA-03**: User can store raw transcripts in `transcript` table linked to project.
+- [x] **DATA-01**: System initializes SQLite database via SQLModel with connection pooling and WAL mode.
+- [x] **DATA-02**: User can manage projects (create, read, list, delete) stored in `project` table.
+- [x] **DATA-03**: User can store raw transcripts in `transcript` table linked to project.
 - [x] **DATA-04**: System persists LangGraph checkpoint state in durable SQLite storage across restarts.
 
 ### Ingestion & API Layer
 
-- [ ] **INGEST-01**: User can submit pre-transcribed text via REST API endpoint (`POST /projects/{id}/transcripts`).
-- [ ] **INGEST-02**: System normalizes transcript text (whitespace, speaker markers, lines) before analysis.
+- [x] **INGEST-01**: User can submit pre-transcribed text via REST API endpoint (`POST /projects/{id}/transcripts`).
+- [x] **INGEST-02**: System normalizes transcript text (whitespace, speaker markers, lines) before analysis.
 
 ### Knowledge Extraction & Grounding
 
@@ -28,15 +28,15 @@
 ### Clarification & Human Interrupt Gate
 
 - [x] **CLARIFY-01**: System generates top 3-5 prioritized follow-up questions targeting the identified unknowns.
-- [ ] **CLARIFY-02**: System interrupts graph execution after extraction to expose state for human inspection.
-- [ ] **CLARIFY-03**: User can submit clarifications, answer unknowns, and resolve contradictions via REST API (`POST /projects/{id}/clarify`).
+- [x] **CLARIFY-02**: System interrupts graph execution after extraction to expose state for human inspection.
+- [x] **CLARIFY-03**: User can submit clarifications, answer unknowns, and resolve contradictions via REST API (`POST /projects/{id}/clarify`).
 
 ### Brief Synthesis & Critique
 
 - [x] **BRIEF-01**: System synthesizes an 11-section project brief grounded in confirmed facts and user clarifications.
 - [x] **BRIEF-02**: System runs an automated self-critique node flagging ungrounded claims or hallucinated scope.
-- [ ] **BRIEF-03**: User can inspect the draft brief and critique notes via REST API (`GET /projects/{id}/brief`).
-- [ ] **BRIEF-04**: User can edit brief sections and submit final approval (`POST /projects/{id}/approve`).
+- [x] **BRIEF-03**: User can inspect the draft brief and critique notes via REST API (`GET /projects/{id}/brief`).
+- [x] **BRIEF-04**: User can edit brief sections and submit final approval (`POST /projects/{id}/approve`).
 
 ### Evaluation & Learning (Story 14)
 
@@ -77,24 +77,24 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DATA-01 | Phase 1 | Pending |
-| DATA-02 | Phase 1 | Pending |
-| DATA-03 | Phase 1 | Pending |
-| DATA-04 | Phase 4 | Pending |
-| INGEST-01 | Phase 1 | Pending |
-| INGEST-02 | Phase 1 | Pending |
-| EXTRACT-01 | Phase 2 | Pending |
-| EXTRACT-02 | Phase 2 | Pending |
-| EXTRACT-03 | Phase 2 | Pending |
-| EXTRACT-04 | Phase 2 | Pending |
-| EXTRACT-05 | Phase 2 | Pending |
-| CLARIFY-01 | Phase 3 | Pending |
-| CLARIFY-02 | Phase 3 | Pending |
-| CLARIFY-03 | Phase 3 | Pending |
-| BRIEF-01 | Phase 4 | Pending |
-| BRIEF-02 | Phase 4 | Pending |
-| BRIEF-03 | Phase 5 | Pending |
-| BRIEF-04 | Phase 5 | Pending |
+| DATA-01 | Phase 1 | Complete |
+| DATA-02 | Phase 1 | Complete |
+| DATA-03 | Phase 1 | Complete |
+| DATA-04 | Phase 4 | Complete |
+| INGEST-01 | Phase 1 | Complete |
+| INGEST-02 | Phase 1 | Complete |
+| EXTRACT-01 | Phase 2 | Complete |
+| EXTRACT-02 | Phase 2 | Complete |
+| EXTRACT-03 | Phase 2 | Complete |
+| EXTRACT-04 | Phase 2 | Complete |
+| EXTRACT-05 | Phase 2 | Complete |
+| CLARIFY-01 | Phase 3 | Complete |
+| CLARIFY-02 | Phase 5 | Complete |
+| CLARIFY-03 | Phase 5 | Complete |
+| BRIEF-01 | Phase 4 | Complete |
+| BRIEF-02 | Phase 4 | Complete |
+| BRIEF-03 | Phase 5 | Complete |
+| BRIEF-04 | Phase 5 | Complete |
 | EVAL-01 | Phase 6 | Pending |
 | EVAL-02 | Phase 6 | Pending |
 | UI-01 | Phase 7 | Pending |

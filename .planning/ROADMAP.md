@@ -118,8 +118,8 @@ Plans:
 
 Plans:
 
-- [ ] 05-01: Expose workflow execution and human interrupt status endpoints.
-- [ ] 05-02: Expose clarification submission and approval endpoints with integration tests.
+- [x] 05-01: Expose workflow execution and human interrupt status endpoints.
+- [x] 05-02: Expose clarification submission and approval endpoints with integration tests.
 
 ### Phase 6: Correction Logging & Evaluation Datasets (Story 14)
 
